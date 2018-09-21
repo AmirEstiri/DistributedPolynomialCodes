@@ -1,7 +1,8 @@
 from mrjob.job import MRJob
 import re
 
-WORD_RE = re.compile("hello")
+WORD_RE = re.compile("bye")
+
 
 class MRWordFreqCount(MRJob):
 
