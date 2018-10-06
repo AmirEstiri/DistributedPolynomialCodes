@@ -5,8 +5,7 @@ from sklearn import datasets, linear_model
 from sklearn.metrics import mean_squared_error, r2_score
 
 # Load the dataset
-data = datasets.load_data()
-
+data = datasets.load_diabetes()
 
 # Use only one feature
 data_X = data.data[:, np.newaxis, 2]
@@ -37,7 +36,7 @@ print("Mean squared error: %.2f"
 print('Variance score: %.2f' % r2_score(data_y_test, data_y_pred))
 
 # Plot outputs
-plt.scatter(data_X_test, data_y_test,  color='black')
+plt.scatter(data_X_test, data_y_test, color='black')
 plt.plot(data_X_test, data_y_pred, color='blue', linewidth=3)
 
 plt.xticks(())
