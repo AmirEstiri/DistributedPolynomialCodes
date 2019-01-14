@@ -1,4 +1,4 @@
-from .polynomial_code import PolynomialCoder
+from Polynomial.polynomial_code import PolynomialCoder
 import numpy as np
 from mpi4py import MPI
 
