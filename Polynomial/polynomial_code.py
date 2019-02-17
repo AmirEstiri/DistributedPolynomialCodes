@@ -9,6 +9,7 @@ import logging
 NP_DATA_TYPE = np.float64
 MPI_DATA_TYPE = MPI.DOUBLE
 
+
 def loop():
     t = time.time()
     while time.time() < t + 60:
@@ -33,8 +34,8 @@ class PolynomialCoder:
         self.t = B.shape[1]
         self.m = m
         self.n = n
-        self.var = [i+1 for i in range(N+1)] + [3]
-        logging.debug("var:\n" + str(self.var))
+        self.var = [pow(64, i, F) for i in range(16)] + [3]
+        # logging.debug("var:\n" + str(self.var))
         # self.zero_padding_matrices()
         self.F = F
         self.coeffs = None
@@ -85,15 +86,15 @@ class PolynomialCoder:
         Aenc = [sum([Ap[j] * (pow(var[i], j, F)) for j in range(m)]) % F for i in range(N)]
         Benc = [sum([Bp[j] * (pow(var[i], j * m, F)) for j in range(n)]) % F for i in range(N)]
 
-        logging.debug("Aenc:" + str(Aenc[0].dtype) + "\n" + str(Aenc))
-        logging.debug("Benc:" + str(Benc[0].dtype) + "\n" + str(Benc))
+        # logging.debug("Aenc:" + str(Aenc[0].dtype) + "\n" + str(Aenc))
+        # logging.debug("Benc:" + str(Benc[0].dtype) + "\n" + str(Benc))
 
         # Start requests to send
         request_A = [None] * N
         request_B = [None] * N
         self.bp_start = time.time()
-        logging.debug("A[i]" + str(Aenc[i].shape) + ", dtype=" + str(Aenc[i].dtype))
-        logging.debug("B[i]" + str(Benc[i].shape) + ", dtype=" + str(Benc[i].dtype))
+        # logging.debug("A[i]" + str(Aenc[i].shape) + ", dtype=" + str(Aenc[i].dtype))
+        # logging.debug("B[i]" + str(Benc[i].shape) + ", dtype=" + str(Benc[i].dtype))
         for i in range(N):
             request_A[i] = comm.Isend([Aenc[i], MPI_DATA_TYPE], dest=i + 1, tag=15)
             request_B[i] = comm.Isend([Benc[i], MPI_DATA_TYPE], dest=i + 1, tag=29)
@@ -105,18 +106,11 @@ class PolynomialCoder:
             comm.Barrier()
 
         self.bp_sent = time.time()
-        logging.info("Time spent sending all messages is: %f" % (self.bp_sent - self.bp_start))
+        # logging.info("Time spent sending all messages is: %f" % (self.bp_sent - self.bp_start))
 
     def reducer(self):
 
-        comm = self.comm
-        var = self.var
-        F = self.F
-        r = self.r
-        n = self.n
-        m = self.m
-        t = self.t
-        N = self.N
+        comm, r, n, m, t, N = self.comm, self.r, self.n, self.m, self.t, self.N
 
         # Initialize return dictionary
         return_dict = []
@@ -137,14 +131,50 @@ class PolynomialCoder:
             return_C[j] = return_dict[j]
 
         self.bp_received = time.time()
-        logging.info("Time spent waiting for %d workers %s is: %f" % (
-            m * n, ",".join(map(str, [x + 1 for x in recv_index])), (self.bp_received - self.bp_sent)))
+        # logging.info("Time spent waiting for %d workers %s is: %f" % (
+        #     m * n, ",".join(map(str, [x + 1 for x in recv_index])), (self.bp_received - self.bp_sent)))
 
-        logging.debug("return C: " + str(return_C))
+        # logging.debug("return C: " + str(return_C))
 
-        self.coeffs = self.calculate_C(return_C, recv_index)
+        # Fast decoding hard coded for m, n = 4
+        var, F = self.var, self.F
+        missing = set(range(m * n)) - set(recv_index)
+
+        for i in missing:
+            begin = time.time()
+            coeff = [1] * (m * n)
+            for j in range(m * n):
+                # Compute coefficient
+                for k in set(recv_index) - set([recv_index[j]]):
+                    coeff[j] = (coeff[j] * (var[i] - var[k]) * pow(var[recv_index[j]] - var[k], F - 2, F)) % F
+            return_C[i] = sum([return_C[recv_index[j]] * coeff[j] for j in range(16)]) % F
+
+        for k in range(4):
+            jump = 2 ** (3 - k)
+            for i in range(jump):
+                block_num = int(8 / jump)
+                for j in range(block_num):
+                    base = i + j * jump * 2
+                    return_C[base] = ((return_C[base] + return_C[base + jump]) * 32769) % F
+                    return_C[base + jump] = ((return_C[base] - return_C[base + jump]) * var[(-i * block_num) % 16]) % F
         self.bp_done = time.time()
-        logging.info("Time spent decoding is: %f" % (self.bp_done - self.bp_received))
+        # logging.info("Time spent decoding is: %f" % (self.bp_done - self.bp_received))
+        file = open("testfile.txt", "w")
+        file.write(str(self.A))
+        file.write("\n")
+        file.write("\n")
+        file.write(str(self.B))
+        file.write("\n")
+        file.write("\n")
+        file.write(str(np.matmul(self.A.T, self.B) % F))
+        file.write("\n")
+        file.write("\n")
+        file.write(str(return_C))
+        file.write("\n")
+        file.write("\n")
+        file.write("done")
+        file.close()
+        print "done"
 
     def calculate_base_indices(self):
         r, s, t, m, n = self.r, self.s, self.t, self.m, self.n
@@ -153,7 +183,7 @@ class PolynomialCoder:
             for i in range(m):
                 base_indices.append([i * int(r / m), j * int(t / n)])
         base_indices = tuple(reversed(base_indices))
-        logging.debug("base_indices:\n" + str(base_indices))
+        # logging.debug("base_indices:\n" + str(base_indices))
         return base_indices
 
     def calculate_C(self, return_C, recv_index):
@@ -169,7 +199,7 @@ class PolynomialCoder:
         # so we need to convert the list
         recv_var = tuple(map(lambda x: x + 1, recv_index))
         coeffs = np.zeros((r, t), dtype=NP_DATA_TYPE)
-        logging.info("looping for %d" % (int(r / m) * int(t / n)))
+        # logging.info("looping for %d" % (int(r / m) * int(t / n)))
         for i in range(int(r / m)):
             for j in range(int(t / n)):
                 f_z = []
@@ -183,11 +213,13 @@ class PolynomialCoder:
         # logging.info("coeffs:\n" + str(coeffs))
         return coeffs
 
-    @staticmethod
-    def mapper(comm, barrier_enabled, straggling_enabled):
+    def mapper(self):
+        comm = self.comm
+        barrier_enabled = self.barrier
+        straggling_enabled = self.straggling
         spec_dict = comm.bcast(None)
         # spec_dict = [3073, 10, 500, 2125991977, 1, 7, 8]
-        logging.debug("spec_dict " + str(spec_dict))
+        # logging.debug("spec_dict " + str(spec_dict))
         r, t, s, F, n, m, N = spec_dict
 
         # Receive straggler information from the master
@@ -199,8 +231,8 @@ class PolynomialCoder:
         receive_A = comm.Irecv(Ai, source=0, tag=15)
         receive_B = comm.Irecv(Bi, source=0, tag=29)
 
-        logging.debug("Ai[receiver] " + str(Ai.shape) + ", dtype=" + str(Ai.dtype))
-        logging.debug("Bi[receiver] " + str(Bi.shape) + ", dtype=" + str(Bi.dtype))
+        # logging.debug("Ai[receiver] " + str(Ai.shape) + ", dtype=" + str(Ai.dtype))
+        # logging.debug("Bi[receiver] " + str(Bi.shape) + ", dtype=" + str(Bi.dtype))
 
         receive_A.wait()
         receive_B.wait()
@@ -216,14 +248,13 @@ class PolynomialCoder:
                 t = threading.Thread(target=loop)
                 t.start()
 
-        Ci = (Ai.getT() * Bi) % F
-        logging.debug("r[" + str(comm.Get_rank()) + "] A:\n" + str(Ai)
-                      + "\nB:\n" + str(Bi)
-                      + "\nC:\n" + str(Ci))
+        Ci = (Ai.T * Bi) % F
 
-        # print("Ci["+ str(comm.Get_rank()) +"]", Ci )
+        # logging.debug("r[" + str(comm.Get_rank()) + "] A:\n" + str(Ai)
+        #               + "\nB:\n" + str(Bi)
+        #               + "\nC:\n" + str(Ci))
         wbp_done = time.time()
-        logging.info("Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received))
+        # logging.info("Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received))
 
         sC = comm.Isend([Ci, MPI_DATA_TYPE], dest=0, tag=42)
         sC.Wait()
@@ -232,3 +263,5 @@ class PolynomialCoder:
         if self.comm.Get_rank() == 0:
             self.data_send()
             self.reducer()
+        # else:
+        #     self.mapper()

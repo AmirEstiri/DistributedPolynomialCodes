@@ -33,9 +33,9 @@ n = 4
 F = 65537
 
 # Input matrix size - A: s by r, B: s by t
-s = 4000
-r = 4000
-t = 4000
+s = 5
+r = 8
+t = 8
 
 # Pick a primitive root 64
 rt = 64
@@ -57,9 +57,26 @@ if comm.rank == 0:
         comm.send(straggler, dest=i + 1, tag=7)
 
     # Create random matrices of 8-bit ints
-    A = np.matrix(np.random.random_integers(0, 255, (r, s)))
-    B = np.matrix(np.random.random_integers(0, 255, (t, s)))
+    A = np.matrix(np.random.random_integers(0, 9, (r, s)))
+    B = np.matrix(np.random.random_integers(0, 9, (t, s)))
+    A_prime = np.ndarray(shape=(r, s), dtype=int)
+    A_prime = np.array(
+        [[1, 2, 1, 0, 1, 2, 3, 1], [0, 0, 1, 1, 0, 0, 4, 4], [1, 5, 4, 4, 5, 1, 0, 1], [2, 2, 3, 4, 2, 1, 0, 2],
+         [6, 6, 7, 7, 8, 1, 0, 9]])
+    A_prime = np.matrix(A_prime).T
 
+    B_prime = np.ndarray(shape=(t, s), dtype=int)
+    B_prime = np.array(
+        [[1, 0, 1, 1, 1, 0, 9, 8], [7, 7, 6, 9, 8, 5, 6, 9], [6, 8, 1, 4, 3, 2, 5, 9], [7, 6, 7, 9, 1, 0, 2, 5],
+         [5, 4, 8, 9, 1, 7, 6, 2]])
+    B_prime = np.matrix(B_prime).T
+
+    print (A_prime[0, 3])
+    print (A[0])
+    for i in range(8):
+        for j in range(5):
+            A[i, j] = A_prime[i, j]
+            B[i, j] = B_prime[i, j]
     # Split the matrices
     Ap = np.split(A, m)
     Bp = np.split(B, n)
@@ -138,9 +155,26 @@ if comm.rank == 0:
     # Verify correctness
     # Bit reverse the order to match the FFT
     # To obtain outputs in an ordinary order, bit reverse the order of input matrices prior to FFT
-    # bit_reverse = [0, 2, 1, 3]
-    # Cver = [(Ap[bit_reverse[i / 4]] * Bp[bit_reverse[i % 4]].getT()) % F for i in range(m * n)]
-    # print ([np.array_equal(Crtn[i], Cver[i]) for i in range(m * n)])
+    bit_reverse = [0, 2, 1, 3]
+    Cver = [(Ap[bit_reverse[i / 4]] * Bp[bit_reverse[i % 4]].getT()) % F for i in range(m * n)]
+    print ([np.array_equal(Crtn[i], Cver[i]) for i in range(m * n)])
+
+    file = open("testfile.txt", "w")
+    file.write(str(A))
+    file.write("\n")
+    file.write("\n")
+    file.write(str(B))
+    file.write("\n")
+    file.write("\n")
+    file.write(str(np.matmul(A, B.T) % F))
+    file.write("\n")
+    file.write("\n")
+    file.write(str(Crtn))
+    file.write("\n")
+    file.write("\n")
+    file.write("done")
+    file.close()
+    print "done"
 else:
     # Worker
     # Receive straggler information from the master
