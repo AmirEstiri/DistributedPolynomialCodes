@@ -9,6 +9,7 @@ import logging
 NP_DATA_TYPE = np.float64
 MPI_DATA_TYPE = MPI.DOUBLE
 
+
 def loop():
     t = time.time()
     while time.time() < t + 60:
@@ -33,7 +34,7 @@ class PolynomialCoder:
         self.t = B.shape[1]
         self.m = m
         self.n = n
-        self.var = [i+1 for i in range(N+1)] + [3]
+        self.var = [i + 1 for i in range(N + 1)] + [3]
         logging.debug("var:\n" + str(self.var))
         # self.zero_padding_matrices()
         self.F = F
