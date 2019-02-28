@@ -77,3 +77,4 @@ if comm.rank == 0:
             print('iteration %d / %d: loss %f' % (it, num_iters, loss))
 else:
 
+

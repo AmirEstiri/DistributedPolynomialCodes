@@ -42,7 +42,7 @@ t = 2
 rt = 64
 
 # Values of x_i used by 17 workers
-var = [i + 1 for i in range(16)] + [3]
+var = [i + 1 for i in range(17)]
 
 #########################################################
 
