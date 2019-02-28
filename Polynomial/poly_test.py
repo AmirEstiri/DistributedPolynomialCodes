@@ -114,17 +114,36 @@ if comm.rank == 0:
         m * n, ",".join(map(str, [x + 1 for x in lst])), (bp_received - bp_sent)))
 
     missing = set(range(m * n)) - set(lst)
+
     # Fast decoding hard coded for m, n = 4
 
-    coeffs = np.zeros((int(r / m), int(t / n), m * n))
-    for i in range(int(r / m)):
-        for j in range(int(t / n)):
-            f_z = []
-            for k in range(m * n):
-                f_z.append(Crtn[lst[k]][i][j])
-            lagrange_interpolate = lagrange(lst, f_z)
-            coeffs[i][j] = lagrange_interpolate
-    print(coeffs)
+    for i in missing:
+        begin = time.time()
+        coeff = [1] * (m * n)
+        for j in range(m * n):
+            # Compute coefficient
+            for k in set(lst) - set([lst[j]]):
+                coeff[j] = (coeff[j] * (var[i] - var[k]) * pow(var[lst[j]] - var[k], F - 2, F)) % F
+        Crtn[i] = sum([Crtn[lst[j]] * coeff[j] for j in range(16)]) % F
+
+    for k in range(4):
+        jump = 2 ** (3 - k)
+        for i in range(jump):
+            block_num = int(8 / jump)
+            for j in range(block_num):
+                base = i + j * jump * 2
+                Crtn[base] = ((Crtn[base] + Crtn[base + jump]) * 32769) % F
+                Crtn[base + jump] = ((Crtn[base] - Crtn[base + jump]) * var[(-i * block_num) % 16]) % F
+
+    # coeffs = np.zeros((int(r / m), int(t / n), m * n))
+    # for i in range(int(r / m)):
+    #     for j in range(int(t / n)):
+    #         f_z = []
+    #         for k in range(m * n):
+    #             f_z.append(Crtn[lst[k]][i][j])
+    #         lagrange_interpolate = lagrange(lst, f_z)
+    #         coeffs[i][j] = lagrange_interpolate
+    # print(coeffs)
 
     bp_done = time.time()
     print("Time spent decoding is: %f" % (bp_done - bp_received))

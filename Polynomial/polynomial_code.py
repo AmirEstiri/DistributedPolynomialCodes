@@ -143,7 +143,7 @@ class PolynomialCoder:
 
         logging.debug("return C: " + str(return_C))
 
-        self.coeffs = self.calculate_C(return_C, recv_index)
+        self.buffer = self.decode_C(return_C, recv_index)
         self.bp_done = time.time()
         logging.info("Time spent decoding is: %f" % (self.bp_done - self.bp_received))
 
@@ -157,7 +157,7 @@ class PolynomialCoder:
         logging.debug("base_indices:\n" + str(base_indices))
         return base_indices
 
-    def calculate_C(self, return_C, recv_index):
+    def decode_C(self, return_C, recv_index):
         """
         :param return_C: Ci calculated by workers
         :return: final C
@@ -169,20 +169,38 @@ class PolynomialCoder:
         # list is 0 based but our workers, and Aenc, Benc matrices are 1 based
         # so we need to convert the list
         recv_var = tuple(map(lambda x: x + 1, recv_index))
-        coeffs = np.zeros((r, t), dtype=NP_DATA_TYPE)
-        logging.info("looping for %d" % (int(r / m) * int(t / n)))
-        for i in range(int(r / m)):
-            for j in range(int(t / n)):
-                f_z = []
-                for k in range(m * n):
-                    f_z.append(return_C[recv_index[k]][i][j])
-                lagrange_interpolate = interpolate.lagrange(recv_var, f_z)
-                for index, lag_coef in enumerate(lagrange_interpolate):
-                    coeffs[i + base_indices[index][0]][j + base_indices[index][1]] = lag_coef
+        missing = set(range(m * n)) - set(recv_index)
 
-        # logging.debug("coeffs: " + str(coeffs.shape))
-        # logging.info("coeffs:\n" + str(coeffs))
-        return coeffs
+        # Fast decoding hard coded for m, n = 4
+
+        for i in missing:
+            begin = time.time()
+            coeff = [1] * (m * n)
+            for j in range(m * n):
+                # Compute coefficient
+                for k in set(recv_index) - set([recv_index[j]]):
+                    coeff[j] = (coeff[j] * (self.var[i] - self.var[k]) * pow(self.var[recv_index[j]] - self.var[k], self.F - 2, self.F)) % self.F
+            return_C[i] = sum([return_C[recv_index[j]] * coeff[j] for j in range(16)]) % self.F
+
+        for k in range(4):
+            jump = 2 ** (3 - k)
+            for i in range(jump):
+                block_num = int(8 / jump)
+                for j in range(block_num):
+                    base = i + j * jump * 2
+                    return_C[base] = ((return_C[base] + return_C[base + jump]) * 32769) % self.F
+                    return_C[base + jump] = ((return_C[base] - return_C[base + jump]) * self.var[(-i * block_num) % 16]) % self.F
+        # coeffs = np.zeros((r, t), dtype=NP_DATA_TYPE)
+        # for i in range(int(r / m)):
+        #     for j in range(int(t / n)):
+        #         f_z = []
+        #         for k in range(m * n):
+        #             f_z.append(return_C[recv_index[k]][i][j])
+        #         lagrange_interpolate = interpolate.lagrange(recv_var, f_z)
+        #         for index, lag_coef in enumerate(lagrange_interpolate):
+        #             coeffs[i + base_indices[index][0]][j + base_indices[index][1]] = lag_coef
+
+        return return_C
 
     @staticmethod
     def mapper(comm, barrier_enabled, straggling_enabled):
@@ -229,7 +247,7 @@ class PolynomialCoder:
         sC = comm.Isend([Ci, MPI_DATA_TYPE], dest=0, tag=42)
         sC.Wait()
 
-    def polynomial_code(self):
-        if self.comm.Get_rank() == 0:
-            self.data_send()
-            self.reducer()
+    # def polynomial_code(self):
+    #     if self.comm.Get_rank() == 0:
+    #         self.data_send()
+    #         self.reducer()

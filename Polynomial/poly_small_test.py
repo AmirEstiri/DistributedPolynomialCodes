@@ -1,6 +1,6 @@
 import numpy as np
 from mpi4py import MPI
-import polynomial_code
+from .polynomial_code import *
 import logging
 import time
 LARGE_PRIME_NUMBER = 2125991977  # 65537
@@ -37,11 +37,11 @@ if __name__ == '__main__':
     if MPI.COMM_WORLD.Get_rank() == 0:
         logging.info("A:\n" + str(A))
         logging.info("B:\n" + str(B))
-        p_code = polynomial_code.PolynomialCoder(A, B, m, n, None, LARGE_PRIME_NUMBER, N, MPI.COMM_WORLD)
+        p_code = PolynomialCoder(A, B, m, n, None, LARGE_PRIME_NUMBER, N, MPI.COMM_WORLD)
         p_code.polynomial_code()
         start = time.time()
         res = np.matmul(A.T, B)
         end = time.time()
         logging.info("np.matmul: time= " + str((end - start)) + "\n" + str(res))
     else:
-        polynomial_code.PolynomialCoder.mapper(MPI.COMM_WORLD, False, False)
+        PolynomialCoder.mapper(MPI.COMM_WORLD, False, False)
