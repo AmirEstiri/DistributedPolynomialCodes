@@ -34,7 +34,7 @@ class PolynomialCoder:
         self.t = B.shape[1]
         self.m = m
         self.n = n
-        self.var = [i + 1 for i in range(N + 1)] + [3]
+        self.var = [pow(64, i, 65537) for i in range(16)] + [3]
         logging.debug("var:\n" + str(self.var))
         # self.zero_padding_matrices()
         self.F = F
