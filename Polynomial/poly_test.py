@@ -71,6 +71,7 @@ if comm.rank == 0:
     Aenc = [sum([Ap[j] * (pow(var[i], j, F)) for j in range(m)]) % F for i in range(N)]
     Benc = [sum([Bp[j] * (pow(var[i], j * m, F)) for j in range(n)]) % F for i in range(N)]
 
+
     # Initialize return dictionary
     Rdict = []
     for i in range(N):

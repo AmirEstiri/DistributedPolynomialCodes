@@ -3,19 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e167f525-9f83-477e-8f1f-54646120ec6e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Polynomial/poly_small_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Polynomial/poly_small_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Polynomial/poly_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Polynomial/poly_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Polynomial/polynomial_code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Polynomial/polynomial_code.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/distributed_svm.py" beforeDir="false" afterPath="$PROJECT_DIR$/distributed_svm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/cs231n/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/cs231n/data_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/cs231n/datasets/get_datasets.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/cs231n/features.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/cs231n/gradient_check.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/cs231n/vis_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/host_file" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/svm.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/svm_cifar10.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,15 +12,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Distributed_Learning$data_handler.coverage" NAME="data_handler Coverage Results" MODIFIED="1551348600630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Distributed_Learning$data_handler.coverage" NAME="data_handler Coverage Results" MODIFIED="1555760488448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/distributed_svm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="19" column="62" lean-forward="true" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+            <state relative-caret-position="251">
+              <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -40,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Polynomial/polynomial_code.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="181" column="120" selection-start-line="181" selection-start-column="120" selection-end-line="181" selection-end-column="120" />
+            <state relative-caret-position="-431">
+              <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
@@ -52,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Polynomial/poly_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-484">
-              <caret line="106" column="11" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="11" />
+            <state relative-caret-position="220">
+              <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
               <folding>
                 <element signature="e#66#88#0" expanded="true" />
               </folding>
@@ -67,20 +55,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Polynomial/polynomial_source.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="133" column="17" selection-start-line="133" selection-start-column="17" selection-end-line="133" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SVM/linear_svm.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-330">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="858">
+              <caret line="43" selection-start-line="43" selection-end-line="43" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -122,10 +98,10 @@
         <option value="$PROJECT_DIR$/Data/cancer/train.csv" />
         <option value="$PROJECT_DIR$/data_handler.py" />
         <option value="$PROJECT_DIR$/Polynomial/poly_small_test.py" />
-        <option value="$PROJECT_DIR$/distributed_svm.py" />
-        <option value="$PROJECT_DIR$/Polynomial/poly_test.py" />
         <option value="$PROJECT_DIR$/Polynomial/polynomial_source.py" />
         <option value="$PROJECT_DIR$/Polynomial/polynomial_code.py" />
+        <option value="$PROJECT_DIR$/distributed_svm.py" />
+        <option value="$PROJECT_DIR$/Polynomial/poly_test.py" />
       </list>
     </option>
   </component>
@@ -139,6 +115,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -149,23 +126,7 @@
             <path>
               <item name="Distributed-Learning" type="b2602c69:ProjectViewProjectNode" />
               <item name="Distributed-Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Distributed-Learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Distributed-Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Data" type="462c0819:PsiDirectoryNode" />
-              <item name="cancer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Distributed-Learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Distributed-Learning" type="462c0819:PsiDirectoryNode" />
               <item name="Polynomial" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Distributed-Learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Distributed-Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="SVM" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Distributed-Learning" type="b2602c69:ProjectViewProjectNode" />
@@ -186,7 +147,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -336,7 +296,10 @@
       <option name="presentableId" value="Default" />
       <updated>1537271074300</updated>
       <workItem from="1547738688755" duration="29000" />
-      <workItem from="1551343539504" duration="9956000" />
+      <workItem from="1551343539504" duration="12515000" />
+      <workItem from="1551578035306" duration="932000" />
+      <workItem from="1553757844136" duration="251000" />
+      <workItem from="1555594566556" duration="4626000" />
     </task>
     <task id="LOCAL-00001" summary="Polynomial finalize">
       <created>1551343597749</created>
@@ -352,11 +315,25 @@
       <option name="project" value="LOCAL" />
       <updated>1551348625015</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Polynomial decode">
+      <created>1551357401673</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1551357401673</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Polynomial decode">
+      <created>1551357464705</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1551357464705</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11822000" />
+    <option name="totallyTimeSpent" value="20190000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -371,13 +348,13 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21538462" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14331985" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="DB Browser" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3285968" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3321492" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -404,7 +381,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Polynomial finalize" />
     <MESSAGE value="Read cancer data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Read cancer data" />
+    <MESSAGE value="Polynomial decode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Polynomial decode" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/README.rst">
@@ -475,10 +453,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Data/cancer/test.csv">
+      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" rowLines="3" />
       </provider>
-      <provider selected="true" editor-type-id="csv-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Polynomial/uncoded.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -502,17 +480,15 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py" />
-    <entry file="file://$PROJECT_DIR$/venv/data_handler.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/data_handler.py" />
     <entry file="file://$PROJECT_DIR$/Data/cancer/train.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" rowLines="3" />
-      </provider>
       <provider selected="true" editor-type-id="csv-text-editor">
         <state relative-caret-position="5874">
           <caret line="267" selection-start-line="267" selection-end-line="267" />
         </state>
+      </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" rowLines="3" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SVM/softmax.py">
@@ -570,35 +546,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SVM/linear_svm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-330">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Polynomial/poly_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-484">
-          <caret line="106" column="11" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="11" />
-          <folding>
-            <element signature="e#66#88#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-2244">
+          <caret column="18" lean-forward="true" selection-start-column="18" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Polynomial/polynomial_source.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="133" column="17" selection-start-line="133" selection-start-column="17" selection-end-line="133" selection-end-column="17" />
+        <state relative-caret-position="858">
+          <caret line="43" selection-start-line="43" selection-end-line="43" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/distributed_svm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="19" column="62" lean-forward="true" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+        <state relative-caret-position="251">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -607,10 +570,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Polynomial/polynomial_code.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="181" column="120" selection-start-line="181" selection-start-column="120" selection-end-line="181" selection-end-column="120" />
+        <state relative-caret-position="-431">
+          <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Polynomial/poly_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
+          <folding>
+            <element signature="e#66#88#0" expanded="true" />
           </folding>
         </state>
       </provider>
