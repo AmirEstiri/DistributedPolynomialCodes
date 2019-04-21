@@ -258,3 +258,14 @@ class PolynomialCoder:
 
         sC = comm.Isend([Ci, MPI_DATA_TYPE], dest=0, tag=42)
         sC.Wait()
+
+    def polynomial_code(self):
+        if self.comm.Get_rank() == 0:
+            self.data_send()
+            self.reducer()
+            start = time.time()
+            res = np.matmul(self.A.T, self.B)
+            end = time.time()
+            logging.info("np.matmul: time= " + str((end - start)) + "\n" + str(res))
+        else:
+            self.mapper()
