@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e167f525-9f83-477e-8f1f-54646120ec6e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Distributed/CS231/Datasets/get_datasets.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Distributed/CS231/svm.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Distributed/data_handler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Distributed/distributed_svm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Distributed/distributed_svm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/cancer/test.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/cancer/train.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Distributed/linear_classifiers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Distributed/linear_classifiers.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,10 +18,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../spring1718_assignment1/assignment1/svm.ipynb">
+        <entry file="file://$PROJECT_DIR$/Distributed/CS231/svm.ipynb">
           <provider selected="true" editor-type-id="ipnb-editor">
             <state>
-              <selected id="1" />
+              <selected id="0" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Distributed/CS231/Datasets/get_datasets.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -27,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/Distributed/linear_svm.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
-              <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+              <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -38,42 +50,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Distributed/linear_classifiers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-103">
-              <caret line="67" column="37" selection-start-line="67" selection-start-column="37" selection-end-line="67" selection-end-column="37" />
+            <state relative-caret-position="1638">
+              <caret line="91" column="46" selection-start-line="91" selection-start-column="46" selection-end-line="91" selection-end-column="46" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Distributed/distributed_svm.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="14" lean-forward="true" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-              <folding>
-                <element signature="e#0#54#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Distributed/polynomial_code.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="261" column="30" selection-start-line="261" selection-start-column="30" selection-end-line="261" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-                <element signature="e#358#1044#0" />
-                <element signature="e#1091#1491#0" />
-                <element signature="e#1526#3309#0" />
-                <element signature="e#3343#5898#0" />
-                <element signature="e#5946#6298#0" />
-                <element signature="e#6357#7439#0" />
-                <element signature="e#7471#9187#0" />
-                <element signature="e#9228#9635#0" />
               </folding>
             </state>
           </provider>
@@ -136,10 +116,12 @@
         <option value="$PROJECT_DIR$/Polynomial/polynomial_code.py" />
         <option value="$PROJECT_DIR$/Distributed/polynomial_code.py" />
         <option value="$PROJECT_DIR$/Distributed/distributed_svm.py" />
+        <option value="$PROJECT_DIR$/Distributed/CS231/__init__.py" />
+        <option value="$PROJECT_DIR$/Distributed/linear_classifiers.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="67" />
     <option name="y" value="27" />
     <option name="width" value="767" />
@@ -194,22 +176,23 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/amirhossein/Desktop/DIstributed-Learning/Linear Regression/test.py&#10;ter&#9;ACTION&#9;ActivateTerminalToolWindow&#10;term&#9;ACTION&#9;ActivateTerminalToolWindow&#10;termin&#9;ACTION&#9;ActivateTerminalToolWindow" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../spring1718_assignment1/assignment1" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../spring1718_assignment1/assignment1/svm.ipynb" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Distributed/CS231/Datasets" />
+      <recent name="$PROJECT_DIR$/Distributed/CS231" />
+      <recent name="$PROJECT_DIR$/Distributed" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Polynomial" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Linear Regression" />
       <recent name="$PROJECT_DIR$/PySpark/WordCount" />
       <recent name="$PROJECT_DIR$/MRJob" />
       <recent name="$PROJECT_DIR$/Word Count" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/Polynomial" />
-      <recent name="$PROJECT_DIR$/SVM" />
-      <recent name="$PROJECT_DIR$/Linear Regression" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -311,9 +294,9 @@
     </configuration>
     <list>
       <item itemvalue="Python.Unnamed" />
-      <item itemvalue="Python.test" />
       <item itemvalue="Python.lin_reg" />
       <item itemvalue="Python.linear_regression" />
+      <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
@@ -362,7 +345,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555851596441</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Clean up">
+      <created>1555851706419</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1555851706419</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -376,7 +366,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1533" height="873" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15870881" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -426,7 +415,8 @@
     <MESSAGE value="Fix polynomial and svm" />
     <MESSAGE value="Fix uncoding error" />
     <MESSAGE value="Polynomial code edited" />
-    <option name="LAST_COMMIT_MESSAGE" value="Polynomial code edited" />
+    <MESSAGE value="Clean up" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/README.rst">
@@ -643,7 +633,7 @@
     <entry file="file://$PROJECT_DIR$/Distributed/linear_svm.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -669,16 +659,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Distributed/linear_classifiers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-103">
-          <caret line="67" column="37" selection-start-line="67" selection-start-column="37" selection-end-line="67" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Distributed/polynomial_code.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
@@ -697,13 +677,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Distributed/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Distributed/CS231/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Distributed/CS231/data_utils.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Distributed/distributed_svm.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="6" column="14" lean-forward="true" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
           <folding>
             <element signature="e#0#54#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Distributed/linear_classifiers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1638">
+          <caret line="91" column="46" selection-start-line="91" selection-start-column="46" selection-end-line="91" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring1718_assignment1/assignment1/svm.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Distributed/CS231/svm.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Distributed/CS231/Datasets/get_datasets.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
