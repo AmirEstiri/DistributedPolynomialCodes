@@ -117,12 +117,17 @@ def svm_loss_vectorized(W, X, y, reg):
 
     return loss, dW
 
+
 from mpi4py import MPI
 import sys
-sys.path.insert(0,'../')
+
+sys.path.insert(0, '../')
 from Polynomial import polynomial_code
+
 LARGE_PRIME_NUMBER = 2125991977
 count = 0
+
+
 def svm_distributed_loss_vectorized(W, X, y, reg):
     global count
     """
@@ -148,7 +153,7 @@ def svm_distributed_loss_vectorized(W, X, y, reg):
     m = 5
     n = 1
     p_code = polynomial_code.PolynomialCoder(X.T, W, m, n, None, LARGE_PRIME_NUMBER, NUMBER_OF_WORKERS,
-                                    MPI.COMM_WORLD)
+                                             MPI.COMM_WORLD)
     p_code.polynomial_code()
     scores = p_code.coeffs
     r = range(num_train)
