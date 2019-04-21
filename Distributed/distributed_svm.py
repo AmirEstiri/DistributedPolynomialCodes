@@ -1,10 +1,9 @@
-from data_handler import read_data_cancer
 from Polynomial.polynomial_code import PolynomialCoder
 import numpy as np
 from mpi4py import MPI
 
 
-X, y = read_data_cancer()
+# X, y = read_data_cancer()
 N = X.shape[0]
 D = X.shape[1]
 C = y.shape[1]
