@@ -1,10 +1,12 @@
 import numpy as np
 from mpi4py import MPI
-from Distributed.polynomial_code import PolynomialCoder
+from polynomial_code import PolynomialCoder
 import logging
 import time
 
+
 # LARGE_PRIME_NUMBER = 2125991977
+
 LARGE_PRIME_NUMBER = 65537
 NP_DATA_TYPE = np.float64
 

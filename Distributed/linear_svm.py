@@ -1,11 +1,9 @@
 import numpy as np
 
+# import sys
+from polynomial_code import PolynomialCoder
 
-from mpi4py import MPI
-import sys
-from .polynomial_code import PolynomialCoder
-
-sys.path.insert(0, '../')
+# sys.path.insert(0, '../')
 
 LARGE_PRIME_NUMBER = 65537
 count = 0
