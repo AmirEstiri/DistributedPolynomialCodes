@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e167f525-9f83-477e-8f1f-54646120ec6e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Distributed/CS231/Datasets/get_datasets.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Distributed/CS231/svm.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/DIstributed-Learning.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DIstributed-Learning.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/cancer/test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/cancer/train.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Distributed/linear_classifiers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Distributed/linear_classifiers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Distributed/Notebook/Datasets/get_datasets.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Distributed/Datasets/get_datasets.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Distributed/Notebook/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Distributed/Notebook/data_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Distributed/data_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Distributed/Notebook/features.py" beforeDir="false" afterPath="$PROJECT_DIR$/Distributed/features.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Distributed/Notebook/gradient_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/Distributed/gradient_check.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Distributed/Notebook/svm.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Distributed/svm.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Distributed/Notebook/vis_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Distributed/vis_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Distributed/linear_svm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Distributed/linear_svm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Distributed/polynomial_code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Distributed/polynomial_code.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,33 +20,45 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Distributed_Learning$DIstributed_Learning.coverage" NAME="DIstributed-Learning Coverage Results" MODIFIED="1556172589174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Distributed/CS231/svm.ipynb">
-          <provider selected="true" editor-type-id="ipnb-editor">
-            <state>
-              <selected id="0" />
+        <entry file="file://$PROJECT_DIR$/Distributed/linear_svm.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Distributed/CS231/Datasets/get_datasets.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        <entry file="file://$PROJECT_DIR$/Distributed/svm.ipynb">
+          <provider selected="true" editor-type-id="ipnb-editor">
+            <state>
+              <selected id="11" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Distributed/linear_svm.py">
+        <entry file="file://$PROJECT_DIR$/Distributed/polynomial_code.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+            <state relative-caret-position="-640">
+              <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#358#1044#0" />
+                <element signature="e#1091#1491#0" />
+                <element signature="e#1526#3309#0" />
+                <element signature="e#3343#5900#0" />
+                <element signature="e#5946#6298#0" />
+                <element signature="e#6357#7439#0" />
+                <element signature="e#7471#9187#0" />
               </folding>
             </state>
           </provider>
@@ -50,7 +67,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Distributed/linear_classifiers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1638">
+            <state relative-caret-position="1936">
               <caret line="91" column="46" selection-start-line="91" selection-start-column="46" selection-end-line="91" selection-end-column="46" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
@@ -114,18 +131,20 @@
         <option value="$PROJECT_DIR$/Polynomial/poly_small_test.py" />
         <option value="$PROJECT_DIR$/Polynomial/poly_final.py" />
         <option value="$PROJECT_DIR$/Polynomial/polynomial_code.py" />
-        <option value="$PROJECT_DIR$/Distributed/polynomial_code.py" />
         <option value="$PROJECT_DIR$/Distributed/distributed_svm.py" />
         <option value="$PROJECT_DIR$/Distributed/CS231/__init__.py" />
         <option value="$PROJECT_DIR$/Distributed/linear_classifiers.py" />
+        <option value="$PROJECT_DIR$/Distributed/linear_svm.py" />
+        <option value="$PROJECT_DIR$/Distributed/Notebook/svm.ipynb" />
+        <option value="$PROJECT_DIR$/Distributed/polynomial_code.py" />
+        <option value="$PROJECT_DIR$/Distributed/svm.ipynb" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
-    <option name="y" value="27" />
-    <option name="width" value="767" />
-    <option name="height" value="873" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="949" />
+    <option name="width" value="980" />
+    <option name="height" value="1031" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -153,19 +172,13 @@
         <subPane>
           <expand>
             <path>
-              <item name="Dist-Comp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Dist-Comp" type="462c0819:PsiDirectoryNode" />
+              <item name="Distributed-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Distributed-Learning" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Dist-Comp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Dist-Comp" type="462c0819:PsiDirectoryNode" />
+              <item name="Distributed-Learning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Distributed-Learning" type="462c0819:PsiDirectoryNode" />
               <item name="Distributed" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Dist-Comp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Dist-Comp" type="462c0819:PsiDirectoryNode" />
-              <item name="Distributed" type="462c0819:PsiDirectoryNode" />
-              <item name="CS231" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -176,23 +189,24 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/amirhossein/Desktop/DIstributed-Learning/Linear Regression/test.py&#10;ter&#9;ACTION&#9;ActivateTerminalToolWindow&#10;term&#9;ACTION&#9;ActivateTerminalToolWindow&#10;termin&#9;ACTION&#9;ActivateTerminalToolWindow" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../spring1718_assignment1/assignment1/svm.ipynb" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DeepLearning1" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Amir Hossein Estiri\Desktop\Distributed-Learning\Distributed" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Linear Regression" />
+      <recent name="$PROJECT_DIR$/PySpark/WordCount" />
+      <recent name="$PROJECT_DIR$/MRJob" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Distributed/CS231/Datasets" />
       <recent name="$PROJECT_DIR$/Distributed/CS231" />
       <recent name="$PROJECT_DIR$/Distributed" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Polynomial" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/Linear Regression" />
-      <recent name="$PROJECT_DIR$/PySpark/WordCount" />
-      <recent name="$PROJECT_DIR$/MRJob" />
-      <recent name="$PROJECT_DIR$/Word Count" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -207,7 +221,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.lin_reg">
+  <component name="RunManager" selected="Jupyter Notebook.DIstributed-Learning">
+    <configuration name="DIstributed-Learning" type="JupiterNotebook" factoryName="Jupyter Notebook">
+      <module name="DIstributed-Learning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Amir Hossein Estiri\Desktop\Distributed-Learning\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="additionalOptions" value="" />
+      <option name="ipnbHost" value="127.0.0.1" />
+      <option name="ipnbPort" value="8888" />
+      <method v="2" />
+    </configuration>
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="DIstributed-Learning" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -220,6 +252,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -241,6 +274,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Linear Regression/lin_reg.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -262,6 +296,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PySpark/Linear Regression/linear_regression.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -283,6 +318,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Linear Regression/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -293,6 +329,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Jupyter Notebook.DIstributed-Learning" />
       <item itemvalue="Python.Unnamed" />
       <item itemvalue="Python.lin_reg" />
       <item itemvalue="Python.linear_regression" />
@@ -316,6 +353,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1537271074300</updated>
+      <workItem from="1556168170135" duration="4239000" />
     </task>
     <task id="LOCAL-00001" summary="SVM and polynomial code">
       <created>1546549627516</created>
@@ -352,8 +390,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555851706419</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Clean up">
+      <created>1556168260566</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1556168260567</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="4239000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -365,22 +413,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="27" width="1533" height="873" extended-state="6" />
+    <frame x="633" y="0" width="653" height="687" extended-state="1" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15870881" />
+      <window_info id="DB Browser" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.4317032" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="DB Execution Console" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32972974" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33693695" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3387534" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.31300813" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.30728242" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32972974" />
+      <window_info anchor="right" id="SciView" />
+      <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -409,6 +463,9 @@
       <window_info anchor="right" id="R Packages" order="4" />
     </layout-to-restore>
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="SVM and polynomial code" />
@@ -433,100 +490,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/mrjob/job.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="106" column="8" selection-start-line="106" selection-start-column="8" selection-end-line="106" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MRJob/Word Count/wordcount.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="9" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/mrjob/job.py" />
+    <entry file="file://$PROJECT_DIR$/MRJob/Word Count/wordcount.py" />
     <entry file="file://$PROJECT_DIR$/RESULT.txt/._SUCCESS.crc" />
     <entry file="file://$PROJECT_DIR$/RESULT.md/part-00000" />
     <entry file="file://$PROJECT_DIR$/RESULT/_SUCCESS" />
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/sklearn/linear_model/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MRJob/Linear Regression/lin_reg_mapreduce.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PySpark/WordCount/wordcount.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PySpark/WordCount/letter_count.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Linear Regression/lin_reg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
-          <folding>
-            <element signature="e#15#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Linear Regression/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data/cancer/test.csv">
-      <provider selected="true" editor-type-id="csv-text-editor" />
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" rowLines="3" />
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/sklearn/linear_model/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/MRJob/Linear Regression/lin_reg_mapreduce.py" />
+    <entry file="file://$PROJECT_DIR$/PySpark/WordCount/wordcount.py" />
+    <entry file="file://$PROJECT_DIR$/PySpark/WordCount/letter_count.py" />
+    <entry file="file://$PROJECT_DIR$/Linear Regression/lin_reg.py" />
+    <entry file="file://$PROJECT_DIR$/Linear Regression/test.py" />
+    <entry file="file://$PROJECT_DIR$/Data/cancer/test.csv" />
     <entry file="file://$PROJECT_DIR$/Polynomial/uncoded.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Linear Regression/gd_lr.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PySpark/Linear Regression/linear_regression.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/pyspark/mllib/regression.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="228" column="8" selection-start-line="228" selection-start-column="8" selection-end-line="228" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PySpark/Linear Regression/Data/data.data">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Linear Regression/gd_lr.py" />
+    <entry file="file://$PROJECT_DIR$/PySpark/Linear Regression/linear_regression.py" />
+    <entry file="file://$USER_HOME$/.local/lib/python2.7/site-packages/pyspark/mllib/regression.py" />
+    <entry file="file://$PROJECT_DIR$/PySpark/Linear Regression/Data/data.data" />
     <entry file="file://$PROJECT_DIR$/SVM/svm.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -570,20 +552,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/env/local/lib/python2.7/site-packages/numpy/matrixlib/defmatrix.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="194" selection-start-line="194" selection-end-line="195" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/env/local/lib/python2.7/site-packages/numpy/lib/shape_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="848" selection-start-line="848" selection-end-line="848" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/env/local/lib/python2.7/site-packages/numpy/matrixlib/defmatrix.py" />
+    <entry file="file://$PROJECT_DIR$/env/local/lib/python2.7/site-packages/numpy/lib/shape_base.py" />
     <entry file="file://$PROJECT_DIR$/Polynomial/polynomial_source.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -630,25 +600,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Distributed/linear_svm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Distributed/data_handler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Distributed/data_handler.py" />
     <entry file="file://$PROJECT_DIR$/Distributed/poly_final.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
@@ -659,31 +611,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Distributed/polynomial_code.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="261" column="30" selection-start-line="261" selection-start-column="30" selection-end-line="261" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-            <element signature="e#358#1044#0" />
-            <element signature="e#1091#1491#0" />
-            <element signature="e#1526#3309#0" />
-            <element signature="e#3343#5898#0" />
-            <element signature="e#5946#6298#0" />
-            <element signature="e#6357#7439#0" />
-            <element signature="e#7471#9187#0" />
-            <element signature="e#9228#9635#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Distributed/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Distributed/CS231/__init__.py">
+    <entry file="file://$PROJECT_DIR$/Distributed/Notebook/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Distributed/CS231/data_utils.py">
+    <entry file="file://$PROJECT_DIR$/Distributed/data_utils.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Distributed/distributed_svm.py">
@@ -696,9 +630,10 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../spring1718_assignment1/assignment1/svm.ipynb" />
     <entry file="file://$PROJECT_DIR$/Distributed/linear_classifiers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1638">
+        <state relative-caret-position="1936">
           <caret line="91" column="46" selection-start-line="91" selection-start-column="46" selection-end-line="91" selection-end-column="46" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
@@ -706,24 +641,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../spring1718_assignment1/assignment1/svm.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Distributed/CS231/svm.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Distributed/CS231/Datasets/get_datasets.sh">
+    <entry file="file://$PROJECT_DIR$/Distributed/Datasets/get_datasets.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
+        <state relative-caret-position="88">
           <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Distributed/polynomial_code.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-640">
+          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+          <folding>
+            <element signature="e#358#1044#0" />
+            <element signature="e#1091#1491#0" />
+            <element signature="e#1526#3309#0" />
+            <element signature="e#3343#5900#0" />
+            <element signature="e#5946#6298#0" />
+            <element signature="e#6357#7439#0" />
+            <element signature="e#7471#9187#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Distributed/linear_svm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Distributed/svm.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="11" />
         </state>
       </provider>
     </entry>

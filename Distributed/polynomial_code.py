@@ -174,7 +174,7 @@ class PolynomialCoder:
         file.write("\n")
         file.write("done")
         file.close()
-        print "done"
+        print("done")
 
     def calculate_base_indices(self):
         r, s, t, m, n = self.r, self.s, self.t, self.m, self.n

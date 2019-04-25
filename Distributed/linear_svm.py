@@ -3,7 +3,7 @@ import numpy as np
 
 from mpi4py import MPI
 import sys
-from polynomial_code import PolynomialCoder
+from .polynomial_code import PolynomialCoder
 
 sys.path.insert(0, '../')
 
