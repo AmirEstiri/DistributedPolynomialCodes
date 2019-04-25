@@ -26,17 +26,15 @@ def loop():
 # Use one master and N workers
 N = 17
 
-# Matrix division
-m = 4
-n = 1
-
 # Field size assumed to be prime for this implementation
-F = 65537
+F = 2125991977
 
-# Input matrix size - A: s by r, B: s by t
-s = 4
-r = 4
-t = 2
+s, r, t, m, n = 5, 8, 8, 4, 4
+A = np.matrix([[1, 2, 1, 0, 1, 2, 3, 1], [0, 0, 1, 1, 0, 0, 4, 4], [1, 5, 4, 4, 5, 1, 0, 1], [2, 2, 3, 4, 2, 1, 0, 2],
+               [6, 6, 7, 7, 8, 1, 0, 9]])
+
+B = np.matrix([[1, 0, 1, 1, 1, 0, 9, 8], [7, 7, 6, 9, 8, 5, 6, 9], [6, 8, 1, 4, 3, 2, 5, 9], [7, 6, 7, 9, 1, 0, 2, 5],
+               [5, 4, 8, 9, 1, 7, 6, 2]])
 
 # Pick a primitive root 64
 rt = 64

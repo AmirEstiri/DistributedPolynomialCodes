@@ -263,5 +263,9 @@ class PolynomialCoder:
         if self.comm.Get_rank() == 0:
             self.data_send()
             self.reducer()
-        # else:
-        #     self.mapper()
+            start = time.time()
+            res = np.matmul(self.A.T, self.B)
+            end = time.time()
+            logging.info("np.matmul: time= " + str((end - start)) + "\n" + str(res))
+        else:
+            self.mapper()
