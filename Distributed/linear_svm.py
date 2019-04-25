@@ -11,7 +11,7 @@ LARGE_PRIME_NUMBER = 65537
 count = 0
 
 
-def svm_distributed_loss_vectorized(W, X, y, reg):
+def svm_loss_distributed(W, X, y, reg, comm):
     global count
     """
     Structured SVM loss function, naive implementation (with loops).
@@ -34,11 +34,11 @@ def svm_distributed_loss_vectorized(W, X, y, reg):
     num_classes = W.shape[1]
     num_train = X.shape[0]
     shape = (num_train, num_classes)
-    NUMBER_OF_WORKERS = 6
-    m = 5
-    n = 1
-    p_code = PolynomialCoder(X.T, W, m, n, None, LARGE_PRIME_NUMBER, NUMBER_OF_WORKERS,
-                                             MPI.COMM_WORLD)
+    NUMBER_OF_WORKERS = 17
+    m = 4
+    n = 4
+    p_code = PolynomialCoder(X.T, W, m, n, None,
+                             LARGE_PRIME_NUMBER, NUMBER_OF_WORKERS, comm)
     p_code.polynomial_code()
     scores = p_code.coeffs
     r = range(num_train)
