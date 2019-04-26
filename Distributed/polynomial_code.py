@@ -36,7 +36,7 @@ class PolynomialCoder:
         self.n = n
         self.var = [pow(64, i, F) for i in range(16)] + [3]
         # logging.debug("var:\n" + str(self.var))
-        # self.zero_padding_matrices()
+        self.zero_padding_matrices()
         self.F = F
         self.coeffs = None
 
@@ -48,16 +48,14 @@ class PolynomialCoder:
         A = self.A
         B = self.B
         t = self.t
-        new_r = r + m - r % m
-        A_pad = np.zeros((s, new_r))
-        A_pad[:, :s] = A
-        new_t = t + n - t % n
-        B_pad = np.zeros((s, new_t))
-        B_pad[:, :s] = B
-        self.A = A_pad
-        self.B = B_pad
-        self.r = new_r
-        self.t = new_t
+        if not r % m == 0:
+            new_r = r + m - r % m
+            self.A = np.pad(A, ((0, 0), (0, new_r - r)), 'constant')
+            self.r = new_r
+        if not s % n == 0:
+            new_t = t + n - t % n
+            self.B = np.pad(B, ((0, 0), (0, new_t-t)), 'constant')
+            self.t = new_t
 
     def data_send(self):
         comm = self.comm
@@ -80,6 +78,8 @@ class PolynomialCoder:
 
         # Split matrices
         Ap = np.hsplit(A, m)
+        print(B.shape)
+        print(n)
         Bp = np.hsplit(B, n)
 
         # Encode the matrices
@@ -98,8 +98,10 @@ class PolynomialCoder:
         for i in range(N):
             request_A[i] = comm.Isend([Aenc[i], MPI_DATA_TYPE], dest=i + 1, tag=15)
             request_B[i] = comm.Isend([Benc[i], MPI_DATA_TYPE], dest=i + 1, tag=29)
+        print('wait')
         MPI.Request.Waitall(request_A)
         MPI.Request.Waitall(request_B)
+        print('after-wait')
 
         # Optionally wait for all workers to receive their submatrices, for more accurate timing
         if self.barrier:
@@ -261,11 +263,16 @@ class PolynomialCoder:
 
     def polynomial_code(self):
         if self.comm.Get_rank() == 0:
+            print('master')
             self.data_send()
+            print('sent')
             self.reducer()
+            print('reduced')
             start = time.time()
             res = np.matmul(self.A.T, self.B)
             end = time.time()
             logging.info("np.matmul: time= " + str((end - start)) + "\n" + str(res))
         else:
+            print('mapping')
             self.mapper()
+            print('mapped')

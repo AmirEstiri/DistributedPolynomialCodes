@@ -9,7 +9,7 @@ class LinearClassifier(object):
         self.W = None
 
     def train(self, X, y, learning_rate=1e-3, reg=1e-5, num_iters=100,
-              batch_size=200, verbose=False, comm=None):
+              batch_size=200, verbose=False):
         """
         Train this linear classifier using stochastic gradient descent.
         Inputs:
@@ -41,7 +41,7 @@ class LinearClassifier(object):
             y_batch = y[ind]
 
             # evaluate loss and gradient
-            loss, grad = self.loss(X_batch, y_batch, reg, comm)
+            loss, grad = self.loss(X_batch, y_batch, reg)
             loss_history.append(loss)
 
             # perform parameter update
@@ -88,4 +88,4 @@ class LinearSVM(LinearClassifier):
     """ A subclass that uses the Multiclass SVM loss function """
 
     def loss(self, X_batch, y_batch, reg, comm):
-        return svm_loss_distributed(self.W, X_batch, y_batch, reg, comm)
+        return svm_loss_distributed(self.W, X_batch, y_batch, reg)

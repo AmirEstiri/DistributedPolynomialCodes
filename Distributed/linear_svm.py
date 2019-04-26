@@ -2,6 +2,7 @@ import numpy as np
 
 # import sys
 from polynomial_code import PolynomialCoder
+from mpi4py import MPI
 
 # sys.path.insert(0, '../')
 
@@ -9,7 +10,7 @@ LARGE_PRIME_NUMBER = 65537
 count = 0
 
 
-def svm_loss_distributed(W, X, y, reg, comm):
+def svm_loss_distributed(W, X, y, reg):
     global count
     """
     Structured SVM loss function, naive implementation (with loops).
@@ -36,8 +37,10 @@ def svm_loss_distributed(W, X, y, reg, comm):
     m = 4
     n = 4
     p_code = PolynomialCoder(X.T, W, m, n, None,
-                             LARGE_PRIME_NUMBER, NUMBER_OF_WORKERS, comm)
+                             LARGE_PRIME_NUMBER, NUMBER_OF_WORKERS, MPI.COMM_WORLD)
+    print('before')
     p_code.polynomial_code()
+    print('after')
     scores = p_code.coeffs
     r = range(num_train)
     # matrix of size num_train * num_classes. All of the elemements of the i-th
