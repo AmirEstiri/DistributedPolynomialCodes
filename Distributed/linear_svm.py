@@ -38,9 +38,7 @@ def svm_loss_distributed(W, X, y, reg):
     n = 4
     p_code = PolynomialCoder(X.T, W, m, n, None,
                              LARGE_PRIME_NUMBER, NUMBER_OF_WORKERS, MPI.COMM_WORLD)
-    print('before')
     p_code.polynomial_code()
-    print('after')
     scores = p_code.coeffs
     r = range(num_train)
     # matrix of size num_train * num_classes. All of the elemements of the i-th
