@@ -35,9 +35,9 @@ n = 4
 F = 65537
 
 # Input matrix size - A: s by r, B: s by t
-s = 500  # 3
-r = 3076  # 8
-t = 12  # 8
+s = 3#3073  # 3
+r = 8#500  # 8
+t = 8#12  # 8
 
 # CIFAR-10 constants
 
@@ -58,44 +58,41 @@ comm = MPI.COMM_WORLD
 if comm.rank == 0:
     # Master
 
-    # cifar10_dir = 'Datasets/cifar-10-batches-py'
-    #
-    # X_train, y_train, X_test, y_test = load_CIFAR10(cifar10_dir)
-    #
-    # mask = range(num_training, num_training + num_validation)
-    # X_val = X_train[mask]
-    # y_val = y_train[mask]
-    #
-    # mask = range(num_training)
-    # X_train = X_train[mask]
-    # y_train = y_train[mask]
-    #
-    # mask = np.random.choice(num_training, num_dev, replace=False)
-    # X_dev = X_train[mask]
-    # y_dev = y_train[mask]
-    #
-    # mask = range(num_test)
-    # X_test = X_test[mask]
-    # y_test = y_test[mask]
-    #
-    # X_train = np.reshape(X_train, (X_train.shape[0], -1))
-    # X_val = np.reshape(X_val, (X_val.shape[0], -1))
-    # X_test = np.reshape(X_test, (X_test.shape[0], -1))
-    # X_dev = np.reshape(X_dev, (X_dev.shape[0], -1))
-    #
-    # mean_image = np.mean(X_train, axis=0)
-    # X_train -= mean_image
-    # X_val -= mean_image
-    # X_test -= mean_image
-    # X_dev -= mean_image
-    #
-    # X_train = np.hstack([X_train, np.ones((X_train.shape[0], 1))])
-    # X_val = np.hstack([X_val, np.ones((X_val.shape[0], 1))])
-    # X_test = np.hstack([X_test, np.ones((X_test.shape[0], 1))])
-    # X_dev = np.hstack([X_dev, np.ones((X_dev.shape[0], 1))])
+    cifar10_dir = 'Datasets/cifar-10-batches-py'
 
-    # A = X_dev
-    # B = (np.random.randn(3073, 10) * 0.0001).T
+    X_train, y_train, X_test, y_test = load_CIFAR10(cifar10_dir)
+
+    mask = range(num_training, num_training + num_validation)
+    X_val = X_train[mask]
+    y_val = y_train[mask]
+
+    mask = range(num_training)
+    X_train = X_train[mask]
+    y_train = y_train[mask]
+
+    mask = np.random.choice(num_training, num_dev, replace=False)
+    X_dev = X_train[mask]
+    y_dev = y_train[mask]
+
+    mask = range(num_test)
+    X_test = X_test[mask]
+    y_test = y_test[mask]
+
+    X_train = np.reshape(X_train, (X_train.shape[0], -1))
+    X_val = np.reshape(X_val, (X_val.shape[0], -1))
+    X_test = np.reshape(X_test, (X_test.shape[0], -1))
+    X_dev = np.reshape(X_dev, (X_dev.shape[0], -1))
+
+    mean_image = np.mean(X_train, axis=0)
+    X_train -= mean_image
+    X_val -= mean_image
+    X_test -= mean_image
+    X_dev -= mean_image
+
+    X_train = np.hstack([X_train, np.ones((X_train.shape[0], 1))])
+    X_val = np.hstack([X_val, np.ones((X_val.shape[0], 1))])
+    X_test = np.hstack([X_test, np.ones((X_test.shape[0], 1))])
+    X_dev = np.hstack([X_dev, np.ones((X_dev.shape[0], 1))])
 
     print("Running with %d processes:" % comm.Get_size())
 
@@ -104,18 +101,14 @@ if comm.rank == 0:
     for i in range(N):
         comm.send(straggler, dest=i + 1, tag=7)
 
-    # Create random matrices of 8-bit ints
-    A = np.matrix(np.random.random_integers(0, 64, (r, s)))
-    B = np.matrix(np.random.random_integers(0, 64, (t, s)))
+    # A = np.matrix(np.random.random_integers(0, 255, (r, s)))
+    # B = np.matrix(np.random.random_integers(0, 255, (t, s)))
 
-    # if not r % m == 0:
-    #     new_r = r + m - r % m
-    #     A = np.pad(A, ((0, 0), (0, new_r - r)), 'constant')
-    #     r = new_r
-    # if not t % n == 0:
-    #     new_t = t + n - t % n
-    #     B = np.pad(B, ((0, 0), (0, new_t - t)), 'constant')
-    #     t = new_t
+    # A = X_dev
+    # B = (np.random.randn(12, 3073) * 0.0001)
+
+    A = np.random.randn(r, s)  # * 0.0001)
+    B = np.random.randn(t, s)  # * 0.0001)
 
     # Split the matrices
     Ap = np.split(A, m)
@@ -193,8 +186,8 @@ if comm.rank == 0:
     # Bit reverse the order to match the FFT
     # To obtain outputs in an ordinary order, bit reverse the order of input matrices prior to FFT
     bit_reverse = [0, 2, 1, 3]
-    Cver = [(Ap[bit_reverse[int(i / 4)]] * Bp[bit_reverse[i % 4]].T) % F for i in range(m * n)]
-    print([np.array_equal(Crtn[i], Cver[i]) for i in range(m * n)])
+    # Cver = [(Ap[bit_reverse[int(i / 4)]] * Bp[bit_reverse[i % 4]].T) % F for i in range(m * n)]
+    # print([np.array_equal(Crtn[i], Cver[i]) for i in range(m * n)])
 
     row = Crtn[0]
     for j in range(1, 4):
@@ -206,10 +199,14 @@ if comm.rank == 0:
             row = np.concatenate((row, Crtn[4 * bit_reverse[i] + bit_reverse[j]]), axis=1)
         Cres = np.concatenate((Cres, row), axis=0)
 
-    # print('c:')
-    # print(Cres)
-    # print('dot:')
-    # print(np.dot(A, B.T))
+    print('A:')
+    print(A)
+    print('B:')
+    print(B)
+    print('c:')
+    print(Cres)
+    print('dot:')
+    print(np.dot(A, B.T))
 
     print('equal?')
     print(Cres == np.dot(A, B.T) % F)
