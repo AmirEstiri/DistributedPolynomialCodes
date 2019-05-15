@@ -35,9 +35,9 @@ n = 4
 F = 65537
 
 # Input matrix size - A: s by r, B: s by t
-s = 3#3073  # 3
-r = 8#500  # 8
-t = 8#12  # 8
+s = 3  # 3073  # 3
+r = 8  # 500  # 8
+t = 8  # 12  # 8
 
 # CIFAR-10 constants
 
@@ -97,6 +97,11 @@ if comm.rank == 0:
     print("Running with %d processes:" % comm.Get_size())
 
     # Decide and broadcast chose straggler
+
+    double = np.array([2.73525159e-01, 0.323, 0.987, 1.910])
+    test_req = comm.Isend(double, dest=1, tag=19)
+    test_req.wait()
+
     straggler = random.randint(1, N)
     for i in range(N):
         comm.send(straggler, dest=i + 1, tag=7)
@@ -107,8 +112,8 @@ if comm.rank == 0:
     # A = X_dev
     # B = (np.random.randn(12, 3073) * 0.0001)
 
-    A = np.random.randn(r, s)  # * 0.0001)
-    B = np.random.randn(t, s)  # * 0.0001)
+    A = np.matrix(np.random.randn(r, s))  # * 0.0001)
+    B = np.matrix(np.random.randn(t, s))  # * 0.0001)
 
     # Split the matrices
     Ap = np.split(A, m)
@@ -121,7 +126,7 @@ if comm.rank == 0:
     # Initialize return dictionary
     Rdict = []
     for i in range(N):
-        Rdict.append(np.zeros((int(r / m), int(t / n)), dtype=np.int_))
+        Rdict.append(np.zeros((int(r / m), int(t / n)), dtype=np.double))
 
     # Start requests to send and receive
     reqA = [None] * N
@@ -129,11 +134,14 @@ if comm.rank == 0:
     reqC = [None] * N
 
     bp_start = time.time()
+    # print(Aenc[0])
+
+    # comm.Isend(Aenc[0], dest=1, tag=23)
 
     for i in range(N):
-        reqA[i] = comm.Isend([Aenc[i], MPI.INT], dest=i + 1, tag=15)
-        reqB[i] = comm.Isend([Benc[i], MPI.INT], dest=i + 1, tag=29)
-        reqC[i] = comm.Irecv([Rdict[i], MPI.INT], source=i + 1, tag=42)
+        reqA[i] = comm.Isend(Aenc[i], dest=i + 1, tag=15)
+        reqB[i] = comm.Isend(Benc[i], dest=i + 1, tag=29)
+        reqC[i] = comm.Irecv(Rdict[i], source=i + 1, tag=42)
 
     MPI.Request.Waitall(reqA)
     MPI.Request.Waitall(reqB)
@@ -217,6 +225,14 @@ else:
     # Receive straggler information from the master
     straggler = comm.recv(source=0, tag=7)
 
+    if comm.rank == 1:
+        double = np.empty_like([0, 0, 0, 0])
+        test = comm.Irecv(double, source=0, tag=19)
+        double_1 = test.wait()
+        print(double)
+        print(double_1)
+        # print(comm.recv(source=0, tag=23))
+
     # Receive split input matrices from the master
     Ai = np.empty_like(np.matrix([[0] * s for i in range(int(r / m))]))
     Bi = np.empty_like(np.matrix([[0] * s for i in range(int(t / n))]))
@@ -236,6 +252,8 @@ else:
             t = threading.Thread(target=loop)
             t.start()
 
+    # if comm.rank == 1:
+    #     print(Ai)
     Ci = (Ai * Bi.T) % F
     wbp_done = time.time()
     # print "Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received)
