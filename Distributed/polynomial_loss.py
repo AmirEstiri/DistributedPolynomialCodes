@@ -98,7 +98,11 @@ if comm.rank == 0:
 
     # Decide and broadcast chose straggler
 
-    double = np.array([2.73525159e-01, 0.323, 0.987, 1.910])
+    # double = np.array([2.73525159e-01, 0.323, 0.987, 1.910])
+    double = np.random.randn(2, 2)
+    # double = np.array([[1.98, 2.63], [2.97, 3.09]])
+    double = np.array(double)
+    print(double)
     test_req = comm.Isend(double, dest=1, tag=19)
     test_req.wait()
 
@@ -134,7 +138,7 @@ if comm.rank == 0:
     reqC = [None] * N
 
     bp_start = time.time()
-    # print(Aenc[0])
+    print(Aenc[0])
 
     # comm.Isend(Aenc[0], dest=1, tag=23)
 
@@ -207,17 +211,17 @@ if comm.rank == 0:
             row = np.concatenate((row, Crtn[4 * bit_reverse[i] + bit_reverse[j]]), axis=1)
         Cres = np.concatenate((Cres, row), axis=0)
 
-    print('A:')
-    print(A)
-    print('B:')
-    print(B)
-    print('c:')
-    print(Cres)
-    print('dot:')
-    print(np.dot(A, B.T))
-
-    print('equal?')
-    print(Cres == np.dot(A, B.T) % F)
+    # print('A:')
+    # print(A)
+    # print('B:')
+    # print(B)
+    # print('c:')
+    # print(Cres)
+    # print('dot:')
+    # print(np.dot(A, B.T))
+    #
+    # print('equal?')
+    # print(Cres == np.dot(A, B.T) % F)
 
 
 else:
@@ -226,16 +230,18 @@ else:
     straggler = comm.recv(source=0, tag=7)
 
     if comm.rank == 1:
-        double = np.empty_like([0, 0, 0, 0])
+        # double = np.matrix(np.zeros((2, 2)))
+        double = np.zeros((2, 2))
         test = comm.Irecv(double, source=0, tag=19)
-        double_1 = test.wait()
+        test.wait()
         print(double)
-        print(double_1)
         # print(comm.recv(source=0, tag=23))
 
     # Receive split input matrices from the master
     Ai = np.empty_like(np.matrix([[0] * s for i in range(int(r / m))]))
     Bi = np.empty_like(np.matrix([[0] * s for i in range(int(t / n))]))
+    # Ai = np.zeros((int(r / m), s))
+    # Bi = np.zeros((int(t / n), s))
     rA = comm.Irecv(Ai, source=0, tag=15)
     rB = comm.Irecv(Bi, source=0, tag=29)
 
@@ -252,8 +258,8 @@ else:
             t = threading.Thread(target=loop)
             t.start()
 
-    # if comm.rank == 1:
-    #     print(Ai)
+    if comm.rank == 1:
+        print(Ai)
     Ci = (Ai * Bi.T) % F
     wbp_done = time.time()
     # print "Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received)
