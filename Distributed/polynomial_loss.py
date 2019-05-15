@@ -35,9 +35,9 @@ n = 4
 F = 65537
 
 # Input matrix size - A: s by r, B: s by t
-s = 3  # 3073  # 3
-r = 8  # 500  # 8
-t = 8  # 12  # 8
+s = 3 #3073  # 3
+r = 8 #500  # 8
+t = 8 #12  # 8
 
 # CIFAR-10 constants
 
@@ -98,26 +98,26 @@ if comm.rank == 0:
 
     # Decide and broadcast chose straggler
 
-    # double = np.array([2.73525159e-01, 0.323, 0.987, 1.910])
-    double = np.random.randn(2, 2)
-    # double = np.array([[1.98, 2.63], [2.97, 3.09]])
-    double = np.array(double)
-    print(double)
-    test_req = comm.Isend(double, dest=1, tag=19)
-    test_req.wait()
+    # double = np.random.randn(2, 2)
+    # double = np.array(double)
+    # print(double)
+    # test_req = comm.Isend(double, dest=1, tag=19)
+    # test_req.wait()
 
     straggler = random.randint(1, N)
     for i in range(N):
         comm.send(straggler, dest=i + 1, tag=7)
 
-    # A = np.matrix(np.random.random_integers(0, 255, (r, s)))
-    # B = np.matrix(np.random.random_integers(0, 255, (t, s)))
+    A = np.matrix(np.random.random_integers(-128, 127, (r, s)))
+    # A = np.random.randint(0, 255, (r, s))
+    B = np.matrix(np.random.random_integers(-128, 127, (t, s)))
+    # B = np.random.randint(0, 255, (t, s))
 
     # A = X_dev
-    # B = (np.random.randn(12, 3073) * 0.0001)
+    # B = np.random.randn(12, 3073) * 0.0001
 
-    A = np.matrix(np.random.randn(r, s))  # * 0.0001)
-    B = np.matrix(np.random.randn(t, s))  # * 0.0001)
+    # A = np.random.randn(r, s) #* 0.0001
+    # B = np.random.randn(t, s) #* 0.0001
 
     # Split the matrices
     Ap = np.split(A, m)
@@ -130,7 +130,7 @@ if comm.rank == 0:
     # Initialize return dictionary
     Rdict = []
     for i in range(N):
-        Rdict.append(np.zeros((int(r / m), int(t / n)), dtype=np.double))
+        Rdict.append(np.zeros((int(r / m), int(t / n)), dtype=np.int))
 
     # Start requests to send and receive
     reqA = [None] * N
@@ -211,17 +211,16 @@ if comm.rank == 0:
             row = np.concatenate((row, Crtn[4 * bit_reverse[i] + bit_reverse[j]]), axis=1)
         Cres = np.concatenate((Cres, row), axis=0)
 
-    # print('A:')
-    # print(A)
-    # print('B:')
-    # print(B)
-    # print('c:')
-    # print(Cres)
-    # print('dot:')
-    # print(np.dot(A, B.T))
-    #
-    # print('equal?')
-    # print(Cres == np.dot(A, B.T) % F)
+    print('A:')
+    print(A)
+    print('B:')
+    print(B)
+    print('c:')
+    print(Cres)
+    print('dot:')
+    print(np.dot(A, B.T))
+    print('equal?')
+    print(Cres == np.dot(A, B.T) % F)
 
 
 else:
@@ -229,17 +228,17 @@ else:
     # Receive straggler information from the master
     straggler = comm.recv(source=0, tag=7)
 
-    if comm.rank == 1:
-        # double = np.matrix(np.zeros((2, 2)))
-        double = np.zeros((2, 2))
-        test = comm.Irecv(double, source=0, tag=19)
-        test.wait()
-        print(double)
-        # print(comm.recv(source=0, tag=23))
+    # if comm.rank == 1:
+    #     # double = np.matrix(np.zeros((2, 2)))
+    #     double = np.zeros((2, 2))
+    #     test = comm.Irecv(double, source=0, tag=19)
+    #     test.wait()
+    #     print(double)
 
     # Receive split input matrices from the master
     Ai = np.empty_like(np.matrix([[0] * s for i in range(int(r / m))]))
     Bi = np.empty_like(np.matrix([[0] * s for i in range(int(t / n))]))
+
     # Ai = np.zeros((int(r / m), s))
     # Bi = np.zeros((int(t / n), s))
     rA = comm.Irecv(Ai, source=0, tag=15)
@@ -247,6 +246,9 @@ else:
 
     rA.wait()
     rB.wait()
+
+    Ai = np.matrix(Ai)
+    Bi = np.matrix(Bi)
 
     if barrier:
         comm.Barrier()
@@ -261,6 +263,10 @@ else:
     if comm.rank == 1:
         print(Ai)
     Ci = (Ai * Bi.T) % F
+    # if comm.rank == 1:
+    #     print(Ai)
+    #     print(Bi)
+    #     print(Ci)
     wbp_done = time.time()
     # print "Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received)
 
