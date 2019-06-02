@@ -120,12 +120,12 @@ if comm.rank == 0:
     #     [[90, 32, 68], [69, 79, 23], [52, 117, 71], [101, 75, 50], [54, 57, 74], [22, 42, 74], [126, 96, 19],
     #      [5, 23, 94]])
     A = np.array(
-        [[28, 87, 99], [10, 22, 16], [87, 11, 17], [10, 90, 55], [54, 57, 91],
+        [[28, 87, 99], [10.1, 22, 16], [87, 11, 17], [10, 90, 55], [54, 57, 91],
          [44, 74, 96],
          [52, 28, 11],
          [12, 99, 0]])
     B = np.array(
-        [[246, 194, 225], [255, 196, 194], [155, 116, 112], [87, 13, 24], [4, 78, 134], [29, 215, 36], [148, 88, 232],
+        [[246.00, 194, 225], [255, 196, 194], [155, 116, 112], [87, 13, 24], [4, 78, 134], [29, 215, 36], [148, 88, 232],
          [195, 160, 202]])
 
     # A = X_dev
@@ -141,12 +141,11 @@ if comm.rank == 0:
     # Encode the matrices
     Aenc = [sum([Ap[j] * (pow(var[i], j, F)) for j in range(m)]) % F for i in range(N)]
     Benc = [sum([Bp[j] * (pow(var[i], j * m, F)) for j in range(n)]) % F for i in range(N)]
-    print(Aenc)
 
     # Initialize return dictionary
     Rdict = []
     for i in range(N):
-        Rdict.append(np.zeros((int(r / m), int(t / n)), dtype=np.int))
+        Rdict.append(np.zeros((int(r / m), int(t / n)), dtype=np.double))
 
     # Start requests to send and receive
     reqA = [None] * N
@@ -184,14 +183,18 @@ if comm.rank == 0:
         m * n, ",".join(map(str, [x + 1 for x in lst])), (bp_received - bp_sent)))
 
     missing = set(range(m * n)) - set(lst)
+    # print(lst)
+    # print(missing)
+    # print(Crtn)
 
     # Fast decoding hard coded for m, n = 4
     sig = 4
     xlist = [var[i] for i in lst]
 
+
     for i in missing:
         begin = time.time()
-        coeff = [1] * (m * n)
+        coeff = [1.0] * (m * n)
         for j in range(m * n):
             # Compute coefficient
             for k in set(lst) - set([lst[j]]):
@@ -226,17 +229,17 @@ if comm.rank == 0:
             row = np.concatenate((row, Crtn[4 * bit_reverse[i] + bit_reverse[j]]), axis=1)
         Cres = np.concatenate((Cres, row), axis=0)
 
-    print('A:')
-    print(A)
-    print('B:')
-    print(B)
+    # print('A:')
+    # print(A)
+    # print('B:')
+    # print(B)
     print('c:')
     print(Cres)
     print('dot:')
     dot = np.dot(A, B.T)
     print(dot)
-    print('divided')
-    print(Cres / dot)
+    # print('divided')
+    # print(Cres / dot)
     print('equal?')
     print(Cres == np.dot(A, B.T) % F)
 
@@ -254,8 +257,8 @@ else:
     #     print(double)
 
     # Receive split input matrices from the master
-    Ai = np.empty_like(np.matrix([[0] * s for i in range(int(r / m))]))
-    Bi = np.empty_like(np.matrix([[0] * s for i in range(int(t / n))]))
+    Ai = np.empty_like(np.matrix([[0.0] * s for i in range(int(r / m))]))
+    Bi = np.empty_like(np.matrix([[0.0] * s for i in range(int(t / n))]))
 
     # Ai = np.zeros((int(r / m), s))
     # Bi = np.zeros((int(t / n), s))
@@ -278,13 +281,8 @@ else:
             t = threading.Thread(target=loop)
             t.start()
 
-    if comm.rank == 1:
-        print(Ai)
     Ci = (Ai * Bi.T) % F
-    # if comm.rank == 1:
-    #     print(Ai)
-    #     print(Bi)
-    #     print(Ci)
+
     wbp_done = time.time()
     # print "Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received)
 
