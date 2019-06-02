@@ -35,9 +35,9 @@ n = 4
 F = 65537
 
 # Input matrix size - A: s by r, B: s by t
-s = 3 #3073  # 3
-r = 8 #500  # 8
-t = 8 #12  # 8
+s = 3  # 3073  # 3
+r = 8  # 500  # 8
+t = 8  # 12  # 8
 
 # CIFAR-10 constants
 
@@ -108,10 +108,25 @@ if comm.rank == 0:
     for i in range(N):
         comm.send(straggler, dest=i + 1, tag=7)
 
-    A = np.matrix(np.random.random_integers(-128, 127, (r, s)))
+    # A = np.matrix(np.random.random_integers(-128, 127, (r, s)))
     # A = np.random.randint(0, 255, (r, s))
-    B = np.matrix(np.random.random_integers(-128, 127, (t, s)))
+    # B = np.matrix(np.random.random_integers(0, 255, (t, s)))
     # B = np.random.randint(0, 255, (t, s))
+    # A = np.array([[90.28405, 32.87599, 68.99852], [69.10910, 79.22109, 23.00167], [52.87274, 117.11767, 71.17177],
+    #               [101.01019, 75.90908, 50.05505],
+    #               [54.54578, 57.57549, 74.09134], [22.44229, 42.74126, 74.96198], [126.52394, 96.28406, 19.11752],
+    #               [5.00012, 23.99999, 94.00000]])
+    # A = np.array(
+    #     [[90, 32, 68], [69, 79, 23], [52, 117, 71], [101, 75, 50], [54, 57, 74], [22, 42, 74], [126, 96, 19],
+    #      [5, 23, 94]])
+    A = np.array(
+        [[28, 87, 99], [10, 22, 16], [87, 11, 17], [10, 90, 55], [54, 57, 91],
+         [44, 74, 96],
+         [52, 28, 11],
+         [12, 99, 0]])
+    B = np.array(
+        [[246, 194, 225], [255, 196, 194], [155, 116, 112], [87, 13, 24], [4, 78, 134], [29, 215, 36], [148, 88, 232],
+         [195, 160, 202]])
 
     # A = X_dev
     # B = np.random.randn(12, 3073) * 0.0001
@@ -126,6 +141,7 @@ if comm.rank == 0:
     # Encode the matrices
     Aenc = [sum([Ap[j] * (pow(var[i], j, F)) for j in range(m)]) % F for i in range(N)]
     Benc = [sum([Bp[j] * (pow(var[i], j * m, F)) for j in range(n)]) % F for i in range(N)]
+    print(Aenc)
 
     # Initialize return dictionary
     Rdict = []
@@ -138,7 +154,6 @@ if comm.rank == 0:
     reqC = [None] * N
 
     bp_start = time.time()
-    print(Aenc[0])
 
     # comm.Isend(Aenc[0], dest=1, tag=23)
 
@@ -218,7 +233,10 @@ if comm.rank == 0:
     print('c:')
     print(Cres)
     print('dot:')
-    print(np.dot(A, B.T))
+    dot = np.dot(A, B.T)
+    print(dot)
+    print('divided')
+    print(Cres / dot)
     print('equal?')
     print(Cres == np.dot(A, B.T) % F)
 
