@@ -12,6 +12,7 @@ import time
 # Change to True for more accurate timing, sacrificing performance
 from data_utils import load_CIFAR10
 
+
 barrier = True
 # Change to True to imitate straggler effects
 straggling = False
