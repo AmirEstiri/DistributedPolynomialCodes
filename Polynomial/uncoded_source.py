@@ -87,7 +87,7 @@ if comm.rank == 0:
     MPI.Request.Waitall(reqC)
     bp_received = time.time()
     print("Time spent waiting for all workers is: %f" % (bp_received - bp_sent))
-
+    print(Crtn)
     # Verify correctness
     # Cver=[(Ap[i % m] * Bp[i / m].getT()) % F for i in range(m * n)]
     # print ([np.array_equal(Crtn[i], Cver[i]) for i in range(m * n)])

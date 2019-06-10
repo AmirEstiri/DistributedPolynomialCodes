@@ -1,7 +1,7 @@
-#!/usr/bin/env python
-"""
+# !/usr/bin/env python
+'''
 Polynomial code with fast decoding
-"""
+'''
 
 from mpi4py import MPI
 import numpy as np
@@ -33,16 +33,15 @@ n = 4
 F = 65537
 
 # Input matrix size - A: s by r, B: s by t
-s = 5
-r = 8
-t = 8
+s = 5000#3073#3
+r = 5000#500#8
+t = 12#12#8
 
 # Pick a primitive root 64
 rt = 64
 
 # Values of x_i used by 17 workers
 var = [pow(64, i, 65537) for i in range(16)] + [3]
-
 #########################################################
 
 comm = MPI.COMM_WORLD
@@ -52,31 +51,15 @@ if comm.rank == 0:
     print("Running with %d processes:" % comm.Get_size())
 
     # Decide and broadcast chosen straggler
+
     straggler = random.randint(1, N)
     for i in range(N):
         comm.send(straggler, dest=i + 1, tag=7)
 
     # Create random matrices of 8-bit ints
-    A = np.matrix(np.random.random_integers(0, 9, (r, s)))
-    B = np.matrix(np.random.random_integers(0, 9, (t, s)))
-    A_prime = np.ndarray(shape=(r, s), dtype=int)
-    A_prime = np.array(
-        [[1, 2, 1, 0, 1, 2, 3, 1], [0, 0, 1, 1, 0, 0, 4, 4], [1, 5, 4, 4, 5, 1, 0, 1], [2, 2, 3, 4, 2, 1, 0, 2],
-         [6, 6, 7, 7, 8, 1, 0, 9]])
-    A_prime = np.matrix(A_prime).T
+    A = np.matrix(np.random.random_integers(0, 255, (r, s)))
+    B = np.matrix(np.random.random_integers(0, 255, (t, s)))
 
-    B_prime = np.ndarray(shape=(t, s), dtype=int)
-    B_prime = np.array(
-        [[1, 0, 1, 1, 1, 0, 9, 8], [7, 7, 6, 9, 8, 5, 6, 9], [6, 8, 1, 4, 3, 2, 5, 9], [7, 6, 7, 9, 1, 0, 2, 5],
-         [5, 4, 8, 9, 1, 7, 6, 2]])
-    B_prime = np.matrix(B_prime).T
-
-    print (A_prime[0, 3])
-    print (A[0])
-    for i in range(8):
-        for j in range(5):
-            A[i, j] = A_prime[i, j]
-            B[i, j] = B_prime[i, j]
     # Split the matrices
     Ap = np.split(A, m)
     Bp = np.split(B, n)
@@ -91,19 +74,18 @@ if comm.rank == 0:
         Rdict.append(np.zeros((int(r / m), int(t / n)), dtype=np.int_))
 
     # Start requests to send and receive
-    # reqA = [None] * N
-    # reqB = [None] * N
-    # reqC = [None] * N
-    reqA = []
-    reqB = []
-    reqC = []
+    reqA = [None] * N
+    reqB = [None] * N
+    reqC = [None] * N
 
     bp_start = time.time()
 
+    print(Aenc[0])
+
     for i in range(N):
-        reqA.append(comm.Isend([Aenc[i], MPI.INT], dest=i + 1, tag=15))
-        reqB.append(comm.Isend([Benc[i], MPI.INT], dest=i + 1, tag=29))
-        reqC.append(comm.Irecv([Rdict[i], MPI.INT], source=i + 1, tag=42))
+        reqA[i] = comm.Isend([Aenc[i], MPI.DOUBLE], dest=i + 1, tag=15)
+        reqB[i] = comm.Isend([Benc[i], MPI.DOUBLE], dest=i + 1, tag=29)
+        reqC[i] = comm.Irecv([Rdict[i], MPI.DOUBLE], source=i + 1, tag=42)
 
     MPI.Request.Waitall(reqA)
     MPI.Request.Waitall(reqB)
@@ -142,7 +124,7 @@ if comm.rank == 0:
         Crtn[i] = sum([Crtn[lst[j]] * coeff[j] for j in range(16)]) % F
 
     for k in range(4):
-        jump = 2 ** (3 - k)
+        jump = int(2 ** (3 - k))
         for i in range(jump):
             block_num = int(8 / jump)
             for j in range(block_num):
@@ -156,25 +138,30 @@ if comm.rank == 0:
     # Bit reverse the order to match the FFT
     # To obtain outputs in an ordinary order, bit reverse the order of input matrices prior to FFT
     bit_reverse = [0, 2, 1, 3]
-    Cver = [(Ap[bit_reverse[i / 4]] * Bp[bit_reverse[i % 4]].getT()) % F for i in range(m * n)]
-    print ([np.array_equal(Crtn[i], Cver[i]) for i in range(m * n)])
+    # Cver = [(Ap[bit_reverse[int(i / 4)]] * Bp[bit_reverse[i % 4]].T) % F for i in range(m * n)]
+    # print ([np.array_equal(Crtn[i], Cver[i]) for i in range(m * n)])
 
-    file = open("testfile.txt", "w")
-    file.write(str(A))
-    file.write("\n")
-    file.write("\n")
-    file.write(str(B))
-    file.write("\n")
-    file.write("\n")
-    file.write(str(np.matmul(A, B.T) % F))
-    file.write("\n")
-    file.write("\n")
-    file.write(str(Crtn))
-    file.write("\n")
-    file.write("\n")
-    file.write("done")
-    file.close()
-    print "done"
+    row = Crtn[0]
+    for j in range(1, 4):
+        row = np.concatenate((row, Crtn[bit_reverse[j]]), axis=1)
+    Cres = row
+    for i in range(1, 4):
+        row = Crtn[4 * bit_reverse[i]]
+        for j in range(1, 4):
+            row = np.concatenate((row, Crtn[4 * bit_reverse[i] + bit_reverse[j]]), axis=1)
+        print(Cres.shape)
+        print(row.shape)
+        Cres = np.concatenate((Cres, row), axis=0)
+
+    print('c:')
+    print(Cres)
+    print('dot:')
+    print(np.dot(A, B.T))
+
+    print('equal?')
+    print(Cres == np.dot(A, B.T) % F)
+
+
 else:
     # Worker
     # Receive straggler information from the master
@@ -199,7 +186,7 @@ else:
             t = threading.Thread(target=loop)
             t.start()
 
-    Ci = (Ai * (Bi.getT())) % F
+    Ci = (Ai * Bi.T) % F
     wbp_done = time.time()
     # print "Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received)
 
