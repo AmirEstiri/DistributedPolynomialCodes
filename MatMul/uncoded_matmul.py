@@ -51,8 +51,8 @@ if comm.rank == 0:
         comm.send(straggler, dest=i + 1, tag=7)
 
     # Create random matrices of 8-bit ints
-    A = np.matrix(np.random.random_integers(0, 255, (r, s)))
-    B = np.matrix(np.random.random_integers(0, 255, (t, s)))
+    A = np.matrix(np.random.randn(r, s))
+    B = np.matrix(np.random.randn(t, s))
 
     # Split the matrices
     Ap = np.split(A, m)
@@ -61,7 +61,7 @@ if comm.rank == 0:
     # Initialize return dictionary
     Crtn = []
     for i in range(N):
-        Crtn.append(np.zeros((int(r / m), int(t / n)), dtype=np.int_))
+        Crtn.append(np.zeros((int(r / m), int(t / n)), dtype=np.float))
 
     # Start requests to send and receive
     reqA = [None] * N
@@ -71,9 +71,9 @@ if comm.rank == 0:
     bp_start = time.time()
 
     for i in range(N):
-        reqA[i] = comm.Isend([Ap[i % m], MPI.INT], dest=i + 1, tag=15)
-        reqB[i] = comm.Isend([Bp[int(i / m)], MPI.INT], dest=i + 1, tag=29)
-        reqC[i] = comm.Irecv([Crtn[i], MPI.INT], source=i + 1, tag=42)
+        reqA[i] = comm.Isend(Ap[i % m], dest=i + 1, tag=15)
+        reqB[i] = comm.Isend(Bp[int(i / m)], dest=i + 1, tag=29)
+        reqC[i] = comm.Irecv(Crtn[i], source=i + 1, tag=42)
 
     MPI.Request.Waitall(reqA)
     MPI.Request.Waitall(reqB)
@@ -99,8 +99,8 @@ if comm.rank == 0:
 else:
     straggler = comm.recv(source=0, tag=7)
 
-    Ai = np.empty_like(np.matrix([[0] * s for i in range(int(r / m))]))
-    Bi = np.empty_like(np.matrix([[0] * s for i in range(int(t / n))]))
+    Ai = np.empty_like(np.matrix([[0.0] * s for i in range(int(r / m))]))
+    Bi = np.empty_like(np.matrix([[0.0] * s for i in range(int(t / n))]))
     rA = comm.Irecv(Ai, source=0, tag=15)
     rB = comm.Irecv(Bi, source=0, tag=29)
 
