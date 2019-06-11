@@ -81,7 +81,7 @@ acc = 0
 
 if comm.rank == 0:
     cifar10_dir = 'Datasets/cifar-10-batches-py'
-    X_train, y_train, X_test, y_test = load_CIFAR10(cifar10_dir)
+    # X_train, y_train, X_test, y_test = load_CIFAR10(cifar10_dir)
     #
     # mask = range(num_training, num_training + num_validation)
     # X_val = X_train[mask]
@@ -91,9 +91,9 @@ if comm.rank == 0:
     # X_train = X_train[mask]
     # y_train = y_train[mask]
     #
-    mask = np.random.choice(num_training, num_dev, replace=False)
-    X_dev = X_train[mask]
-    y_dev = y_train[mask]
+    # mask = np.random.choice(num_training, num_dev, replace=False)
+    # X_dev = X_train[mask]
+    # y_dev = y_train[mask]
     #
     # mask = range(num_test)
     # X_test = X_test[mask]
