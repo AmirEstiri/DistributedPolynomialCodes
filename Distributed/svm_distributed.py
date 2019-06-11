@@ -249,6 +249,7 @@ while acc < 0.4:
         loss /= num_train
         loss += reg * np.sum(W * W)
         dScores = np.array(margins > 0, dtype=np.int32)
+        num_nonzero = np.zeros((r, ))
         num_nonzero = np.count_nonzero(dScores, axis=1)
         num_nonzero -= np.ones(num_nonzero.shape, dtype=np.int32)
         dScores[range(num_train), y] *= -num_nonzero
