@@ -33,9 +33,9 @@ n = 4
 F = 65537
 
 # Input matrix size - A: s by r, B: s by t
-s = 3073
+s = 3000
 r = 500
-t = 12
+t = 500
 #########################################################
 
 comm = MPI.COMM_WORLD
@@ -112,7 +112,7 @@ else:
             thread = threading.Thread(target=loop)
             thread.start()
 
-    Ci = (Ai * (Bi.getT())) % F
+    Ci = (Ai * Bi.T) % F
     wbp_done = time.time()
     print("Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received))
 
