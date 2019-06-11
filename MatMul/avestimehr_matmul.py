@@ -33,9 +33,9 @@ n = 4
 F = 65537
 
 # Input matrix size - A: s by r, B: s by t
-s = 1000 #3073#3
-r = 1000 #500#8
-t = 12 #12#8
+s = 3000 #3073#3
+r = 500 #500#8
+t = 500 #12#8
 
 # Pick a primitive root 64
 rt = 64
@@ -188,7 +188,7 @@ else:
 
     Ci = (Ai * Bi.T) % F
     wbp_done = time.time()
-    # print "Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received)
+    print("Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received))
 
     sC = comm.Isend(Ci, dest=0, tag=42)
     sC.Wait()

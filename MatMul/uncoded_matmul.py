@@ -33,8 +33,8 @@ n = 4
 F = 65537
 
 # Input matrix size - A: s by r, B: s by t
-s = 5000
-r = 5000
+s = 3073
+r = 500
 t = 12
 #########################################################
 
@@ -114,7 +114,7 @@ else:
 
     Ci = (Ai * (Bi.getT())) % F
     wbp_done = time.time()
-    # print "Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received)
+    print("Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received))
 
     sC = comm.Isend(Ci, dest=0, tag=42)
     sC.Wait()
