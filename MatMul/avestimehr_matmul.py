@@ -59,6 +59,8 @@ if comm.rank == 0:
     # Create random matrices of 8-bit ints
     A = np.matrix(np.random.random_integers(0, 255, (r, s)))
     B = np.matrix(np.random.random_integers(0, 255, (t, s)))
+    print(A.shape)
+    print(B.shape)
 
     # Split the matrices
     Ap = np.split(A, m)
@@ -149,17 +151,7 @@ if comm.rank == 0:
         row = Crtn[4 * bit_reverse[i]]
         for j in range(1, 4):
             row = np.concatenate((row, Crtn[4 * bit_reverse[i] + bit_reverse[j]]), axis=1)
-        print(Cres.shape)
-        print(row.shape)
         Cres = np.concatenate((Cres, row), axis=0)
-
-    print('c:')
-    print(Cres)
-    print('dot:')
-    print(np.dot(A, B.T))
-
-    print('equal?')
-    print(Cres == np.dot(A, B.T) % F)
 
 
 else:
