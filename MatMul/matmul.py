@@ -50,9 +50,9 @@ m = 4
 n = 4
 
 # Input matrix size - A: s by r, B: s by t
-s = 2500  # 3073  # 3
-r = 100  # 500  # 8
-t = 100  # 12  # 8
+s = 3000  # 3073  # 3
+r = 500  # 500  # 8
+t = 500  # 12  # 8
 
 # CIFAR-10 constants
 
