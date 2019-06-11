@@ -20,7 +20,7 @@ timing = False
 
 def loop():
     t = time.time()
-    while time.time() < t + 2:
+    while time.time() < t + 3:
         a = 1 + 1
 
 
@@ -260,7 +260,6 @@ while acc < 0.4:
         sC = comm.Isend(Ci, dest=0, tag=42)
         sC.Wait()
 
-exit(0)
 END = time.time()
 print('total time:')
 print(END - START)
