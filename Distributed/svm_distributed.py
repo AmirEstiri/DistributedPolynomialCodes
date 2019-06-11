@@ -233,7 +233,7 @@ while acc < 0.4:
         num_classes = t
         num_train = r
         shape = (r, t)
-
+        #
         scores = Cres
         # matrix of size num_train * num_classes. All of the elemements of the i-th
         # row is the score of correct class of i-th instance.
@@ -255,8 +255,8 @@ while acc < 0.4:
 
         dW = np.dot(np.transpose(X), dScores).T
         dW = dW / num_train + 2 * reg * W
-        W -= dW * learning_rate
 
+        W -= dW * learning_rate
         y_pred = np.argmax(scores, axis=1)
         acc = np.sum(y_pred == y) / y.shape[0]
         print(np.real(loss))
