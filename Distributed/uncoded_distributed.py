@@ -10,7 +10,7 @@ import threading
 import time
 
 # Change to True for more accurate timing, sacrificing performance
-from data_utils import load_CIFAR10
+# from data_utils import load_CIFAR10
 
 barrier = True
 # Change to True to imitate straggler effects
@@ -20,7 +20,7 @@ timing = True
 
 def loop():
     t = time.time()
-    while time.time() < t + 60:
+    while time.time() < t + 6:
         a = 1 + 1
 
 
@@ -232,8 +232,9 @@ while acc < 0.4:
         # Start a separate thread to mimic background computation tasks if this is a straggler
         if straggling:
             if straggler == comm.rank:
-                t = threading.Thread(target=loop)
-                t.start()
+                loop()
+                # t = threading.Thread(target=loop)
+                # t.start()
 
         Ci = (Ai * Bi.T)
 
