@@ -48,6 +48,7 @@ comm = MPI.COMM_WORLD
 
 if comm.rank == 0:
     # Master
+    START = time.time()
     print("Running with %d processes:" % comm.Get_size())
 
     # Decide and broadcast chosen straggler
@@ -152,6 +153,10 @@ if comm.rank == 0:
         for j in range(1, 4):
             row = np.concatenate((row, Crtn[4 * bit_reverse[i] + bit_reverse[j]]), axis=1)
         Cres = np.concatenate((Cres, row), axis=0)
+
+    END = time.time()
+    print("TIME:")
+    print(END-START)
 
 
 else:
