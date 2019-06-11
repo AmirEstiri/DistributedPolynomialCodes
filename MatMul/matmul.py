@@ -15,7 +15,7 @@ import time
 barrier = True
 # Change to True to imitate straggler effects
 straggling = False
-timing = True
+timing = False
 
 
 def loop():
@@ -50,9 +50,9 @@ m = 4
 n = 4
 
 # Input matrix size - A: s by r, B: s by t
-s = 2500  # 3073  # 3
-r = 2500  # 500  # 8
-t = 2500  # 12  # 8
+s = 3000  # 3073  # 3
+r = 500  # 500  # 8
+t = 500  # 12  # 8
 
 # CIFAR-10 constants
 
@@ -82,9 +82,9 @@ acc = 0
 
 if comm.rank == 0:
     # Master
-    START = time.time()
     A = np.random.random_integers(0, 255, (r, s))
     B = np.random.random_integers(0, 255, (t, s))
+    START = time.time()
     print(A.shape)
     print(B.shape)
     if timing:
@@ -222,7 +222,8 @@ else:
             # t = threading.Thread(target=loop)
             # t.start()
 
-    Ci = (Ai * Bi.T)
+    # Ci = (Ai * Bi.T)
+    Ci = np.dot(Ai, Bi.T)
 
     wbp_done = time.time()
     if timing:
