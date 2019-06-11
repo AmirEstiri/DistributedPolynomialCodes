@@ -42,6 +42,7 @@ comm = MPI.COMM_WORLD
 
 if comm.rank == 0:
     # Master
+    START = time.time()
     print("Running with %d processes:" % comm.Get_size())
 
     # Decide and broadcast chosen straggler
@@ -91,6 +92,9 @@ if comm.rank == 0:
     # Verify correctness
     # Cver=[(Ap[i % m] * Bp[i / m].getT()) % F for i in range(m * n)]
     # print ([np.array_equal(Crtn[i], Cver[i]) for i in range(m * n)])
+    END = time.time()
+    print("TIME:")
+    print(END-START)
 
 else:
     straggler = comm.recv(source=0, tag=7)
