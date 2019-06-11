@@ -82,6 +82,7 @@ acc = 0
 
 if comm.rank == 0:
     # Master
+    START = time.time()
     A = np.random.randn(0, 255, (r, s))
     B = np.random.randn(0, 255, (t, s))
     print(A.shape)
@@ -186,6 +187,10 @@ if comm.rank == 0:
     bp_done = time.time()
     if timing:
         print("Time spent decoding is: %f" % (bp_done - bp_received))
+
+    END = time.time()
+    print("TIME:")
+    print(END-START)
 
 
 else:
