@@ -82,8 +82,8 @@ acc = 0
 
 if comm.rank == 0:
     # Master
-    A = np.random.random_integers(0, 255, (r, s))
-    B = np.random.random_integers(0, 255, (t, s))
+    A = np.random.randn(0, 255, (r, s))
+    B = np.random.randn(0, 255, (t, s))
     if timing:
         print("Running with %d processes:" % comm.Get_size())
 
