@@ -84,6 +84,8 @@ if comm.rank == 0:
     # Master
     A = np.random.randn(0, 255, (r, s))
     B = np.random.randn(0, 255, (t, s))
+    print(A.shape)
+    print(B.shape)
     if timing:
         print("Running with %d processes:" % comm.Get_size())
 
@@ -184,11 +186,6 @@ if comm.rank == 0:
     bp_done = time.time()
     if timing:
         print("Time spent decoding is: %f" % (bp_done - bp_received))
-
-    print(Cres)
-    print(np.dot(A, B.T))
-
-    # End SVM loss
 
 
 else:
