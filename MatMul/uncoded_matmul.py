@@ -16,9 +16,11 @@ straggling = True
 
 
 def loop():
+    print('loop')
     t = time.time()
-    while time.time() < t + 60:
+    while time.time() < t + 6:
         a = 1 + 1
+    print(time.time() - t)
 
 
 ##################### Parameters ########################
@@ -46,7 +48,8 @@ if comm.rank == 0:
     print("Running with %d processes:" % comm.Get_size())
 
     # Decide and broadcast chosen straggler
-    straggler = random.randint(1, N + 1)
+    # straggler = random.randint(1, N + 1)
+    straggler = 1
     for i in range(N):
         comm.send(straggler, dest=i + 1, tag=7)
 
@@ -93,7 +96,6 @@ if comm.rank == 0:
     MPI.Request.Waitall(reqC)
     bp_received = time.time()
     print("Time spent waiting for all workers is: %f" % (bp_received - bp_sent))
-    print(Crtn)
     # Verify correctness
     # Cver=[(Ap[i % m] * Bp[i / m].getT()) % F for i in range(m * n)]
     # print ([np.array_equal(Crtn[i], Cver[i]) for i in range(m * n)])
@@ -118,12 +120,14 @@ else:
 
     if straggling:
         if straggler == comm.rank:
-            thread = threading.Thread(target=loop)
-            thread.start()
+            loop()
+            # thread = threading.Thread(target=loop)
+            # thread.start()
 
     Ci = (Ai * Bi.T) % F
     wbp_done = time.time()
-    print("Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received))
+    if straggler == comm.rank:
+        print("Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received))
 
     sC = comm.Isend(Ci, dest=0, tag=42)
     sC.Wait()

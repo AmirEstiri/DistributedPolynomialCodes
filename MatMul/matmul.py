@@ -20,7 +20,7 @@ timing = True
 
 def loop():
     t = time.time()
-    while time.time() < t + 60:
+    while time.time() < t + 6:
         a = 1 + 1
 
 
@@ -218,8 +218,9 @@ else:
     # Start a separate thread to mimic background computation tasks if this is a straggler
     if straggling:
         if straggler == comm.rank:
-            t = threading.Thread(target=loop)
-            t.start()
+            loop()
+            # t = threading.Thread(target=loop)
+            # t.start()
 
     Ci = (Ai * Bi.T)
 
