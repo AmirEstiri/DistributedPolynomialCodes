@@ -20,7 +20,7 @@ timing = True
 
 def loop():
     t = time.time()
-    while time.time() < t + 6:
+    while time.time() < t + 3:
         a = 1 + 1
 
 
