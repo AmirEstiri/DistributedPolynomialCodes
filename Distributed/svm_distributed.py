@@ -10,7 +10,7 @@ import threading
 import time
 
 # Change to True for more accurate timing, sacrificing performance
-from data_utils import load_CIFAR10
+# from data_utils import load_CIFAR10
 
 barrier = True
 # Change to True to imitate straggler effects
@@ -253,7 +253,7 @@ while acc < 0.4:
         num_nonzero -= np.ones((r,), dtype=np.int32)
         dScores[range(num_train), y] *= -num_nonzero
 
-        dW = np.matmul(np.transpose(X), dScores).T
+        dW = np.dot(np.transpose(X), dScores).T
         dW = dW / num_train + 2 * reg * W
         W -= dW * learning_rate
 
