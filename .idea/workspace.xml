@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e167f525-9f83-477e-8f1f-54646120ec6e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Distributed/svm_distributed.py" beforeDir="false" afterPath="$PROJECT_DIR$/Distributed/svm_distributed.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Distributed/uncoded_distributed.py" beforeDir="false" afterPath="$PROJECT_DIR$/Distributed/uncoded_distributed.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MatMul/avestimehr_matmul.py" beforeDir="false" afterPath="$PROJECT_DIR$/MatMul/avestimehr_matmul.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MatMul/matmul.py" beforeDir="false" afterPath="$PROJECT_DIR$/MatMul/matmul.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MatMul/uncoded_matmul.py" beforeDir="false" afterPath="$PROJECT_DIR$/MatMul/uncoded_matmul.py" afterDir="false" />
@@ -19,19 +21,19 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MatMul/matmul.py">
+        <entry file="file://$PROJECT_DIR$/MatMul/uncoded_matmul.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+            <state relative-caret-position="444">
+              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MatMul/uncoded_matmul.py">
+        <entry file="file://$PROJECT_DIR$/MatMul/matmul.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1216">
-              <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
+            <state relative-caret-position="198">
+              <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -39,8 +41,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MatMul/avestimehr_matmul.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
+            <state relative-caret-position="-58">
+              <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
               <folding>
                 <element signature="e#67#89#0" expanded="true" />
               </folding>
@@ -76,13 +78,15 @@
       <find>append</find>
       <find>Ai</find>
       <find>waitany</find>
-      <find>print</find>
       <find>reqC</find>
       <find>sig</find>
       <find>F</find>
       <find>complex</find>
       <find>running</find>
       <find>num_nonzer</find>
+      <find>print</find>
+      <find>N</find>
+      <find>straggler</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -135,11 +139,11 @@
         <option value="$PROJECT_DIR$/Distributed/polynomial_interpolate.py" />
         <option value="$PROJECT_DIR$/Polynomial/uncoded.py" />
         <option value="$PROJECT_DIR$/Distributed/uncoded.py" />
-        <option value="$PROJECT_DIR$/Distributed/uncoded_distributed.py" />
         <option value="$PROJECT_DIR$/Polynomial/polynomial_code.py" />
         <option value="$PROJECT_DIR$/Distributed/t.py" />
-        <option value="$PROJECT_DIR$/Distributed/svm_distributed.py" />
         <option value="$PROJECT_DIR$/MatMul/__init__.py" />
+        <option value="$PROJECT_DIR$/Distributed/svm_distributed.py" />
+        <option value="$PROJECT_DIR$/Distributed/uncoded_distributed.py" />
         <option value="$PROJECT_DIR$/MatMul/uncoded_matmul.py" />
         <option value="$PROJECT_DIR$/MatMul/matmul.py" />
         <option value="$PROJECT_DIR$/MatMul/avestimehr_matmul.py" />
@@ -174,11 +178,6 @@
               <item name="Distributed-Learning" type="b2602c69:ProjectViewProjectNode" />
               <item name="Distributed-Learning" type="462c0819:PsiDirectoryNode" />
               <item name="MatMul" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Distributed-Learning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Distributed-Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Polynomial" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -532,7 +531,112 @@
       <option name="project" value="LOCAL" />
       <updated>1560244055119</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Bug fixes">
+      <created>1560244708066</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1560244708066</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Bug fixes">
+      <created>1560244982805</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1560244982805</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Bug fixes">
+      <created>1560245047234</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1560245047234</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Bug fixes">
+      <created>1560245220705</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1560245220705</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Bug fixes">
+      <created>1560245242439</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1560245242439</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Bug fixes">
+      <created>1560245333100</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1560245333100</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Bug fixes">
+      <created>1560245359973</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1560245359973</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Bug fixes">
+      <created>1560245376227</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1560245376227</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Bug fixes">
+      <created>1560245485390</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1560245485390</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Bug fixes">
+      <created>1560245662326</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1560245662326</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Bug fixes">
+      <created>1560246444355</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1560246444355</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Bug fixes">
+      <created>1560247429908</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1560247429908</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Bug fixes">
+      <created>1560247518533</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1560247518533</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Bug fixes">
+      <created>1560247901525</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1560247901525</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Bug fixes">
+      <created>1560247927440</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1560247927440</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -551,7 +655,7 @@
     <frame x="67" y="27" width="1533" height="873" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.50901526" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21587089" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="DB Browser" order="3" />
@@ -563,7 +667,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3387534" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32897604" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49899125" visible="true" weight="0.40650406" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49899125" visible="true" weight="0.40650406" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50100875" side_tool="true" weight="0.39566395" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49966374" weight="0.32897604" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
@@ -727,16 +831,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Distributed/uncoded_distributed.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2674">
-          <caret line="243" lean-forward="true" selection-start-line="243" selection-end-line="243" />
-          <folding>
-            <element signature="e#67#89#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Distributed/t.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -762,8 +856,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Distributed/svm_distributed.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="258" column="31" selection-start-line="258" selection-start-column="31" selection-end-line="258" selection-end-column="31" />
+        <state relative-caret-position="152">
+          <caret line="123" selection-start-line="123" selection-end-line="124" selection-end-column="8" />
+          <folding>
+            <element signature="e#67#89#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Distributed/uncoded_distributed.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="170" column="26" selection-start-line="170" selection-start-column="26" selection-end-line="170" selection-end-column="26" />
           <folding>
             <element signature="e#67#89#0" expanded="true" />
           </folding>
@@ -772,22 +876,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MatMul/uncoded_matmul.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1216">
-          <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
+        <state relative-caret-position="444">
+          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MatMul/matmul.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+        <state relative-caret-position="198">
+          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MatMul/avestimehr_matmul.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
+        <state relative-caret-position="-58">
+          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
           <folding>
             <element signature="e#67#89#0" expanded="true" />
           </folding>

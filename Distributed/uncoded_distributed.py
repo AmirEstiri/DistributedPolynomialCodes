@@ -14,19 +14,19 @@ import time
 
 barrier = True
 # Change to True to imitate straggler effects
-straggling = False
-timing = True
+straggling = True
+timing = False
 
 
 def loop():
     t = time.time()
-    while time.time() < t + 3:
+    while time.time() < t + 2:
         a = 1 + 1
 
 
 ##################### Parameters ########################
 # Use one master and N workers
-N = 16
+N = 17
 
 # Matrix division
 m = 4
@@ -99,10 +99,13 @@ if comm.rank == 0:
     W = np.random.randn(t, s)
     y = np.random.random_integers(0, 11, (r,))
 
+START = time.time()
+iter = 0
 while acc < 0.4:
-
+    iter += 1
     if comm.rank == 0:
         # Master
+        START_ITER = time.time()
 
         cifar10_dir = 'Datasets/cifar-10-batches-py'
 
@@ -124,6 +127,7 @@ while acc < 0.4:
 
         # Initialize return dictionary
         Crtn = []
+        buf = np.zeros((int(r / m), int(t / n)), dtype=np.float)
         for i in range(N):
             Crtn.append(np.zeros((int(r / m), int(t / n)), dtype=np.float))
 
@@ -134,10 +138,14 @@ while acc < 0.4:
 
         bp_start = time.time()
 
-        for i in range(N):
+        for i in range(N-1):
             reqA[i] = comm.Isend(Ap[i % m], dest=i + 1, tag=15)
             reqB[i] = comm.Isend(Bp[int((i - i % m) / m)], dest=i + 1, tag=29)
             reqC[i] = comm.Irecv(Crtn[i], source=i + 1, tag=42)
+
+        reqA[N - 1] = comm.Isend(Ap[0], dest=N, tag=15)
+        reqB[N - 1] = comm.Isend(Bp[0], dest=N, tag=29)
+        reqC[N - 1] = comm.Irecv(buf, source=N, tag=42)
 
         MPI.Request.Waitall(reqA)
         MPI.Request.Waitall(reqB)
@@ -160,7 +168,7 @@ while acc < 0.4:
         Cres = np.zeros((r, t), dtype=float)
         jump_x = int(r / 4)
         jump_y = int(t / 4)
-        for k in range(N):
+        for k in range(m*n):
             for i in range(jump_x):
                 for j in range(jump_y):
                     X_0 = jump_x * (k % 4)
@@ -203,6 +211,12 @@ while acc < 0.4:
         acc = np.sum(y_pred == y) / y.shape[0]
         print(np.real(loss))
         print(acc)
+
+        END_ITER = time.time()
+        print('iteration num:')
+        print(iter)
+        print('iteration time:')
+        print(END_ITER - START_ITER)
 
         # End SVM loss
 
@@ -247,3 +261,6 @@ while acc < 0.4:
         sC.Wait()
 
 exit(0)
+END = time.time()
+print('total time:')
+print(END - START)

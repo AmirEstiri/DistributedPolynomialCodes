@@ -121,9 +121,13 @@ if comm.rank == 0:
     # y = y_dev
     y = np.random.random_integers(0, 11, (r,))
 
+START = time.time()
+iter = 0
 while acc < 0.4:
-
+    iter += 1
+    # print(iter)
     if comm.rank == 0:
+        START_ITER = time.time()
         # Master
         if timing:
             print("Running with %d processes:" % comm.Get_size())
@@ -259,9 +263,15 @@ while acc < 0.4:
         W -= dW * learning_rate
         y_pred = np.argmax(scores, axis=1)
         acc = np.sum(y_pred == y) / y.shape[0]
+
         print(np.real(loss))
         print(acc)
 
+        END_ITER = time.time()
+        print('iteration num:')
+        print(iter)
+        print('iteration time:')
+        print(END_ITER - START_ITER)
         # End SVM loss
 
 
@@ -302,3 +312,6 @@ while acc < 0.4:
 
         sC = comm.Isend(Ci, dest=0, tag=42)
         sC.Wait()
+END = time.time()
+print('total time:')
+print(END - START)
