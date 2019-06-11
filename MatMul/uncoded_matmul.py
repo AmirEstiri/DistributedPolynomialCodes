@@ -23,7 +23,7 @@ def loop():
 
 ##################### Parameters ########################
 # Use one master and N workers
-N = 16
+N = 17
 
 # Matrix division
 m = 4
@@ -60,6 +60,7 @@ if comm.rank == 0:
 
     # Initialize return dictionary
     Crtn = []
+    buf = np.zeros((int(r / m), int(t / n)), dtype=np.float)
     for i in range(N):
         Crtn.append(np.zeros((int(r / m), int(t / n)), dtype=np.float))
 
@@ -70,10 +71,14 @@ if comm.rank == 0:
 
     bp_start = time.time()
 
-    for i in range(N):
+    for i in range(N-1):
         reqA[i] = comm.Isend(Ap[i % m], dest=i + 1, tag=15)
         reqB[i] = comm.Isend(Bp[int(i / m)], dest=i + 1, tag=29)
         reqC[i] = comm.Irecv(Crtn[i], source=i + 1, tag=42)
+
+    reqA[N-1] = comm.Isend(Ap[0], dest=N, tag=15)
+    reqB[N-1] = comm.Isend(Bp[0], dest=N, tag=29)
+    reqC[N-1] = comm.Irecv(buf, source=N, tag=42)
 
     MPI.Request.Waitall(reqA)
     MPI.Request.Waitall(reqB)
