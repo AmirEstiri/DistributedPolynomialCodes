@@ -16,7 +16,6 @@ straggling = True
 
 
 def loop():
-    print('loop')
     t = time.time()
     while time.time() < t + 6:
         a = 1 + 1
@@ -36,8 +35,8 @@ F = 65537
 
 # Input matrix size - A: s by r, B: s by t
 s = 2500
-r = 2500
-t = 2500
+r = 100
+t = 100
 #########################################################
 
 comm = MPI.COMM_WORLD
