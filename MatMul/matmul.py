@@ -140,7 +140,7 @@ if comm.rank == 0:
     # Wait for the mn fastest workers
     start1 = 0
     end1 = 0
-    for i in range(m * n + 1):
+    for i in range(m * n):
         j = MPI.Request.Waitany(reqC)
         lst.append(j)
         Crtn[j] = Rdict[j]
