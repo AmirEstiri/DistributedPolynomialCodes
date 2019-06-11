@@ -83,8 +83,8 @@ acc = 0
 if comm.rank == 0:
     # Master
     START = time.time()
-    A = np.random.randn(0, 255, (r, s))
-    B = np.random.randn(0, 255, (t, s))
+    A = np.random.random_integers(0, 255, (r, s))
+    B = np.random.random_integers(0, 255, (t, s))
     print(A.shape)
     print(B.shape)
     if timing:
