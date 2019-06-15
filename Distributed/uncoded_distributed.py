@@ -99,12 +99,14 @@ if comm.rank == 0:
     W = np.random.randn(t, s)
     y = np.random.random_integers(0, 11, (r,))
 
-START = time.time()
+
 iter = 0
+if comm.rank == 0:
+    START = time.time()
 while acc < 0.4:
-    iter += 1
     if comm.rank == 0:
         # Master
+        iter += 1
         START_ITER = time.time()
 
         cifar10_dir = 'Datasets/cifar-10-batches-py'
