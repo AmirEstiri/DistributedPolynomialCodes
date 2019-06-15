@@ -46,7 +46,7 @@ var = [pow(64, i, 65537) for i in range(16)] + [3]
 #########################################################
 
 comm = MPI.COMM_WORLD
-NUM_SIM = 10
+NUM_SIM = 100
 MEAN_TIME = 0
 MEAN_TIME_DECODING = 0
 START = 0
