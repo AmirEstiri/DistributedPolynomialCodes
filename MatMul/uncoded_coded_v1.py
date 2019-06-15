@@ -51,8 +51,8 @@ n = 4
 F = 65537
 
 # Input matrix size - A: s by r, B: s by t
-s = 3000   # 3000   # 1000
-r = 100    # 100    # 2000
+s = 3000   # 3000   # 400
+r = 100    # 100    # 500
 t = 200    # 200    # 100
 
 # Values of x_i used by 17 workers
