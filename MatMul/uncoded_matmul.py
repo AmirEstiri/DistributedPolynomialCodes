@@ -40,93 +40,99 @@ t = 100
 #########################################################
 
 comm = MPI.COMM_WORLD
-
 if comm.rank == 0:
-    # Master
-    START = time.time()
-    print("Running with %d processes:" % comm.Get_size())
-
-    # Decide and broadcast chosen straggler
-    # straggler = random.randint(1, N + 1)
-    straggler = 1
-    for i in range(N):
-        comm.send(straggler, dest=i + 1, tag=7)
-
-    # Create random matrices of 8-bit ints
     A = np.matrix(np.random.randn(r, s))
     B = np.matrix(np.random.randn(t, s))
 
-    # Split the matrices
-    Ap = np.split(A, m)
-    Bp = np.split(B, n)
 
-    # Initialize return dictionary
-    Crtn = []
-    buf = np.zeros((int(r / m), int(t / n)), dtype=np.float)
-    for i in range(N):
-        Crtn.append(np.zeros((int(r / m), int(t / n)), dtype=np.float))
+NUM_SIM = 1
+for i in range(NUM_SIM):
+    if comm.rank == 0:
+        # Master
+        START = time.time()
+        print("Running with %d processes:" % comm.Get_size())
 
-    # Start requests to send and receive
-    reqA = [None] * N
-    reqB = [None] * N
-    reqC = [None] * N
+        # Decide and broadcast chosen straggler
+        # straggler = random.randint(1, N + 1)
+        straggler = 1
+        for i in range(N):
+            comm.send(straggler, dest=i + 1, tag=7)
 
-    bp_start = time.time()
+        # Create random matrices of 8-bit ints
+        A = np.matrix(np.random.randn(r, s))
+        B = np.matrix(np.random.randn(t, s))
 
-    for i in range(N-1):
-        reqA[i] = comm.Isend(Ap[i % m], dest=i + 1, tag=15)
-        reqB[i] = comm.Isend(Bp[int(i / m)], dest=i + 1, tag=29)
-        reqC[i] = comm.Irecv(Crtn[i], source=i + 1, tag=42)
+        # Split the matrices
+        Ap = np.split(A, m)
+        Bp = np.split(B, n)
 
-    reqA[N-1] = comm.Isend(Ap[0], dest=N, tag=15)
-    reqB[N-1] = comm.Isend(Bp[0], dest=N, tag=29)
-    reqC[N-1] = comm.Irecv(buf, source=N, tag=42)
+        # Initialize return dictionary
+        Crtn = []
+        buf = np.zeros((int(r / m), int(t / n)), dtype=np.float)
+        for i in range(N):
+            Crtn.append(np.zeros((int(r / m), int(t / n)), dtype=np.float))
 
-    MPI.Request.Waitall(reqA)
-    MPI.Request.Waitall(reqB)
+        # Start requests to send and receive
+        reqA = [None] * N
+        reqB = [None] * N
+        reqC = [None] * N
 
-    # Optionally wait for all workers to receive their submatrices, for more accurate timing
-    if barrier:
-        comm.Barrier()
+        bp_start = time.time()
 
-    bp_sent = time.time()
-    print("Time spent sending all messages is: %f" % (bp_sent - bp_start))
+        for i in range(N - 1):
+            reqA[i] = comm.Isend(Ap[i % m], dest=i + 1, tag=15)
+            reqB[i] = comm.Isend(Bp[int(i / m)], dest=i + 1, tag=29)
+            reqC[i] = comm.Irecv(Crtn[i], source=i + 1, tag=42)
 
-    MPI.Request.Waitall(reqC)
-    bp_received = time.time()
-    print("Time spent waiting for all workers is: %f" % (bp_received - bp_sent))
-    # Verify correctness
-    # Cver=[(Ap[i % m] * Bp[i / m].getT()) % F for i in range(m * n)]
-    # print ([np.array_equal(Crtn[i], Cver[i]) for i in range(m * n)])
-    END = time.time()
-    print("TIME:")
-    print(END-START)
+        reqA[N - 1] = comm.Isend(Ap[0], dest=N, tag=15)
+        reqB[N - 1] = comm.Isend(Bp[0], dest=N, tag=29)
+        reqC[N - 1] = comm.Irecv(buf, source=N, tag=42)
 
-else:
-    straggler = comm.recv(source=0, tag=7)
+        MPI.Request.Waitall(reqA)
+        MPI.Request.Waitall(reqB)
 
-    Ai = np.empty_like(np.matrix([[0.0] * s for i in range(int(r / m))]))
-    Bi = np.empty_like(np.matrix([[0.0] * s for i in range(int(t / n))]))
-    rA = comm.Irecv(Ai, source=0, tag=15)
-    rB = comm.Irecv(Bi, source=0, tag=29)
+        # Optionally wait for all workers to receive their submatrices, for more accurate timing
+        if barrier:
+            comm.Barrier()
 
-    rA.wait()
-    rB.wait()
+        bp_sent = time.time()
+        print("Time spent sending all messages is: %f" % (bp_sent - bp_start))
 
-    if barrier:
-        comm.Barrier()
-    wbp_received = time.time()
+        MPI.Request.Waitall(reqC)
+        bp_received = time.time()
+        print("Time spent waiting for all workers is: %f" % (bp_received - bp_sent))
+        # Verify correctness
+        # Cver=[(Ap[i % m] * Bp[i / m].getT()) % F for i in range(m * n)]
+        # print ([np.array_equal(Crtn[i], Cver[i]) for i in range(m * n)])
+        END = time.time()
+        print("TIME:")
+        print(END - START)
 
-    if straggling:
+    else:
+        straggler = comm.recv(source=0, tag=7)
+
+        Ai = np.empty_like(np.matrix([[0.0] * s for i in range(int(r / m))]))
+        Bi = np.empty_like(np.matrix([[0.0] * s for i in range(int(t / n))]))
+        rA = comm.Irecv(Ai, source=0, tag=15)
+        rB = comm.Irecv(Bi, source=0, tag=29)
+
+        rA.wait()
+        rB.wait()
+
+        if barrier:
+            comm.Barrier()
+        wbp_received = time.time()
+
+        if straggling:
+            if straggler == comm.rank:
+                loop()
+                # thread = threading.Thread(target=loop)
+                # thread.start()
+
+        Ci = (Ai * Bi.T) % F
+        wbp_done = time.time()
         if straggler == comm.rank:
-            loop()
-            # thread = threading.Thread(target=loop)
-            # thread.start()
+            print("Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received))
 
-    Ci = (Ai * Bi.T) % F
-    wbp_done = time.time()
-    if straggler == comm.rank:
-        print("Worker %d computing takes: %f\n" % (comm.Get_rank(), wbp_done - wbp_received))
-
-    sC = comm.Isend(Ci, dest=0, tag=42)
-    sC.Wait()
+        sC = comm.Isend(Ci, dest=0, tag=42)
+        sC.Wait()

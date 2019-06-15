@@ -60,8 +60,6 @@ if comm.rank == 0:
     # Create random matrices of 8-bit ints
     A = np.matrix(np.random.random_integers(0, 255, (r, s)))
     B = np.matrix(np.random.random_integers(0, 255, (t, s)))
-    print(A.shape)
-    print(B.shape)
 
     # Split the matrices
     Ap = np.split(A, m)
