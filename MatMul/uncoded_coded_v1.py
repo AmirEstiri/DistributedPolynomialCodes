@@ -51,9 +51,9 @@ n = 4
 F = 65537
 
 # Input matrix size - A: s by r, B: s by t
-s = 3000   # 3000   # 400
-r = 100    # 100    # 500
-t = 200    # 200    # 100
+s = 400   # 3000   # 400
+r = 500    # 100    # 500
+t = 100    # 200    # 100
 
 # Values of x_i used by 17 workers
 var = [np.exp(2 * np.pi * i * 1j / 16) for i in range(16)] + [1]

@@ -34,9 +34,9 @@ n = 4
 F = 65537
 
 # Input matrix size - A: s by r, B: s by t
-s = 3000   # 3000   # 400
-r = 100    # 100    # 500
-t = 200    # 200    # 100
+s = 400   # 3000   # 400
+r = 500    # 100    # 500
+t = 100    # 200    # 100
 
 # Pick a primitive root 64
 rt = 64
